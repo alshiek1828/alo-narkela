@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!-- SEO Meta Tags -->
+  <title>رمز QR | الو نركيلة</title>
+  <meta name="description" content="امسح رمز QR للوصول السريع إلى موقع الو نركيلة — أفضل نكهات الاراكيل في العراق.">
+  <meta name="keywords" content="QR code, رمز, الو نركيلة, نكهات اراكيل, العراق">
+  <meta name="author" content="الو نركيلة">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://allo-narkila.netlify.app/qr.html">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="رمز QR | الو نركيلة">
+  <meta property="og:description" content="امسح رمز QR للوصول السريع إلى موقع الو نركيلة.">
+  <meta property="og:url" content="https://allo-narkila.netlify.app/qr.html">
+  <meta property="og:site_name" content="الو نركيلة">
+  <meta property="og:locale" content="ar_IQ">
+
+  <!-- PWA Meta Tags -->
+  <meta name="theme-color" content="#0a0a0f">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="الو نركيلة">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="generated-icon.png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* ---- QR Page Layout ---- */
+    .qr-page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 100px 24px 60px;
+      text-align: center;
+    }
+
+    @media (max-width: 768px) {
+      .qr-page {
+        padding: 90px 16px 40px;
+        justify-content: flex-start;
+        padding-top: 110px;
+      }
+    }
+
+    /* ---- Logo ---- */
+    .qr-logo {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      margin-bottom: 24px;
+      animation: scaleIn 0.5s ease;
+    }
+
+    .qr-logo img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 2px solid var(--border-gold);
+    }
+
+    /* ---- Title ---- */
+    .qr-page h1 {
+      font-size: 2.2rem;
+      font-weight: 900;
+      background: var(--gold-text);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 8px;
+      animation: fadeInUp 0.5s ease 0.1s both;
+    }
+
+    .qr-page .qr-subtitle {
+      color: var(--text-secondary);
+      font-size: 1.05rem;
+      margin-bottom: 40px;
+      animation: fadeInUp 0.5s ease 0.2s both;
+    }
+
+    @media (max-width: 768px) {
+      .qr-page h1 {
+        font-size: 1.7rem;
+      }
+      .qr-page .qr-subtitle {
+        font-size: 0.95rem;
+        margin-bottom: 28px;
+      }
+    }
+
+    /* ---- QR Card ---- */
+    .qr-card {
+      background: #12121a;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--border-gold);
+      border-radius: var(--radius-xl);
+      padding: 40px;
+      max-width: 380px;
+      width: 100%;
+      margin-bottom: 32px;
+      box-shadow: var(--gold-glow);
+      animation: scaleIn 0.5s ease 0.3s both;
+    }
+
+    @media (max-width: 768px) {
+      .qr-card {
+        padding: 28px;
+        max-width: 320px;
+      }
+    }
+
+    .qr-card canvas {
+      display: block;
+      margin: 0 auto;
+      border-radius: var(--radius-sm);
+    }
+
+    .qr-card .qr-url {
+      margin-top: 20px;
+      padding: 10px 16px;
+      background: var(--bg-glass);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-sm);
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      direction: ltr;
+      text-align: center;
+      word-break: break-all;
+      user-select: all;
+    }
+
+    /* ---- Action Buttons ---- */
+    .qr-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 48px;
+      animation: fadeInUp 0.5s ease 0.4s both;
+    }
+
+    .qr-actions .btn-gold,
+    .qr-actions .btn-outline {
+      min-width: 160px;
+    }
+
+    /* ---- Instructions Section ---- */
+    .qr-instructions {
+      max-width: 480px;
+      width: 100%;
+      animation: fadeInUp 0.5s ease 0.5s both;
+    }
+
+    .qr-instructions h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 20px;
+    }
+
+    .qr-instructions .instruction-step {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border-light);
+      text-align: right;
+    }
+
+    .qr-instructions .instruction-step:last-child {
+      border-bottom: none;
+    }
+
+    .qr-instructions .step-number {
+      width: 36px;
+      height: 36px;
+      min-width: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(201, 168, 76, 0.1);
+      color: var(--gold-start);
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .qr-instructions .step-text {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .qr-instructions .step-text strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    /* ---- Toast for copy feedback ---- */
+    .copy-toast {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: var(--bg-card);
+      border: 1px solid var(--border-gold);
+      border-radius: var(--radius-full);
+      padding: 12px 28px;
+      color: var(--gold-start);
+      font-size: 0.9rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: var(--gold-glow);
+      z-index: 9999;
+      opacity: 0;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      pointer-events: none;
+    }
+
+    .copy-toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================
+       LOADING SPINNER
+       ============================ -->
+  <div class="loading-spinner" id="loadingSpinner">
+    <div class="spinner"></div>
+    <p>جاري تحميل الو نركيلة...</p>
+  </div>
+
+  <!-- ============================
+       TOAST CONTAINER
+       ============================ -->
+  <div class="toast-container"></div>
+
+  <!-- ============================
+       NAVIGATION
+       ============================ -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar-logo" onclick="handleLogoClick()" title="الو نركيلة">
+      <img src="generated-icon.png" alt="الو نركيلة">
+      <span>الو نركيلة</span>
+    </div>
+
+    <div class="navbar-links">
+      <a href="index.html">الرئيسية</a>
+      <a href="index.html#menu">قائمة النكهات</a>
+      <a href="index.html#about">من نحن</a>
+      <a href="contact.html">تواصل معنا</a>
+    </div>
+
+    <button class="hamburger" id="hamburgerBtn" aria-label="فتح القائمة">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- ============================
+       SIDE PANEL (Mobile)
+       ============================ -->
+  <div class="side-panel-overlay" id="sidePanelOverlay"></div>
+  <div class="side-panel" id="sidePanel">
+    <div class="side-panel-header">
+      <span class="logo-text">الو نركيلة</span>
+      <button class="side-panel-close" id="sidePanelClose" aria-label="إغلاق القائمة">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+
+    <div class="side-panel-nav">
+      <a href="index.html"><i class="fas fa-home"></i> الرئيسية</a>
+      <a href="index.html#menu"><i class="fas fa-fire"></i> قائمة النكهات</a>
+      <a href="index.html#about"><i class="fas fa-info-circle"></i> من نحن</a>
+      <a href="contact.html"><i class="fas fa-envelope"></i> تواصل معنا</a>
+    </div>
+
+    <div class="side-panel-social">
+      <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+    </div>
+  </div>
+
+  <!-- ============================
+       QR PAGE CONTENT
+       ============================ -->
+  <main class="qr-page">
+    <!-- Logo -->
+    <div class="qr-logo">
+      <img src="generated-icon.png" alt="الو نركيلة">
+    </div>
+
+    <!-- Title -->
+    <h1>رمز QR للموقع</h1>
+    <p class="qr-subtitle">امسح الرمز للوصول السريع</p>
+
+    <!-- QR Code Card -->
+    <div class="qr-card">
+      <canvas id="qrCanvas"></canvas>
+      <div class="qr-url">https://allo-narkela.netlify.app/</div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="qr-actions">
+      <button class="btn-gold" onclick="downloadQR()">
+        <i class="fas fa-download"></i>
+        تحميل الرمز
+      </button>
+      <button class="btn-outline" onclick="copyURL()">
+        <i class="fas fa-copy"></i>
+        نسخ الرابط
+      </button>
+    </div>
+
+    <!-- Instructions -->
+    <div class="qr-instructions">
+      <h3><i class="fas fa-info-circle" style="color: var(--gold-start); margin-left: 8px;"></i> كيفية الاستخدام</h3>
+
+      <div class="instruction-step">
+        <div class="step-number">1</div>
+        <div class="step-text">
+          افتح <strong>كاميرا هاتفك</strong> أو أي تطبيق مسح QR
+        </div>
+      </div>
+
+      <div class="instruction-step">
+        <div class="step-number">2</div>
+        <div class="step-text">
+          وجّه الكاميرا نحو <strong>رمز QR</strong> المعروض أعلاه
+        </div>
+      </div>
+
+      <div class="instruction-step">
+        <div class="step-number">3</div>
+        <div class="step-text">
+          سيظهر لك <strong>إشعار</strong> — اضغط عليه للانتقال مباشرة إلى الموقع
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Copy Toast -->
+  <div class="copy-toast" id="copyToast">
+    <i class="fas fa-check-circle"></i>
+    تم نسخ الرابط بنجاح
+  </div>
+
+  <!-- ========================
+       FOOTER
+       ======================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <img src="generated-icon.png" alt="الو نركيلة">
+            <span>الو نركيلة</span>
+          </div>
+          <p>
+            وجهتك الأولى لأفضل نكهات الاراكيل في العراق. جودة عالية وأسعار مناسبة مع توصيل سريع.
+          </p>
+          <div class="footer-social">
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-column">
+          <h4>روابط سريعة</h4>
+          <ul>
+            <li><a href="index.html"><i class="fas fa-chevron-left"></i> الرئيسية</a></li>
+            <li><a href="index.html#menu"><i class="fas fa-chevron-left"></i> قائمة النكهات</a></li>
+            <li><a href="index.html#about"><i class="fas fa-chevron-left"></i> من نحن</a></li>
+            <li><a href="contact.html"><i class="fas fa-chevron-left"></i> تواصل معنا</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>معلومات التواصل</h4>
+          <ul>
+            <li><a href="https://wa.me/9647702604040" target="_blank"><i class="fab fa-whatsapp"></i> 9647702604040+</a></li>
+            <li><a href="#"><i class="fas fa-map-marker-alt"></i> العراق</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>تابعنا</h4>
+          <ul>
+            <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+            <li><a href="#"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+            <li><a href="#"><i class="fab fa-tiktok"></i> TikTok</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2025 <a href="#">الو نركيلة</a>. جميع الحقوق محفوظة.</p>
+        <p>صُمم بـ <span style="color: var(--danger);">❤</span> في العراق</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================
+       SCROLL TO TOP BUTTON
+       ============================ -->
+  <button class="scroll-top" aria-label="العودة للأعلى">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <!-- ============================
+       SCRIPTS
+       ============================ -->
+  <!-- Firebase Compat SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+
+  <!-- QR Code Library -->
+  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+
+  <!-- App Script -->
+  <script src="app.js"></script>
+
+  <!-- QR Page Script -->
+  <script>
+    (function () {
+      var targetURL = 'https://allo-narkela.netlify.app/';
+
+      // Generate QR Code
+      var canvas = document.getElementById('qrCanvas');
+      if (canvas && typeof QRCode !== 'undefined') {
+        QRCode.toCanvas(canvas, targetURL, {
+          width: 280,
+          margin: 2,
+          color: {
+            dark: '#c9a84c',
+            light: '#12121a'
+          },
+          errorCorrectionLevel: 'H'
+        }, function (error) {
+          if (error) {
+            console.error('QR generation error:', error);
+          }
+        });
+      }
+
+      // Download QR
+      window.downloadQR = function () {
+        var qrCanvas = document.getElementById('qrCanvas');
+        if (!qrCanvas) return;
+
+        // Create a larger canvas with padding
+        var padding = 40;
+        var size = qrCanvas.width + (padding * 2);
+        var exportCanvas = document.createElement('canvas');
+        exportCanvas.width = size;
+        exportCanvas.height = size;
+        var ctx = exportCanvas.getContext('2d');
+
+        // Background
+        ctx.fillStyle = '#12121a';
+        ctx.beginPath();
+        ctx.roundRect(0, 0, size, size, 20);
+        ctx.fill();
+
+        // Border
+        ctx.strokeStyle = 'rgba(201, 168, 76, 0.25)';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.roundRect(0, 0, size, size, 20);
+        ctx.stroke();
+
+        // Draw QR
+        ctx.drawImage(qrCanvas, padding, padding);
+
+        // Download
+        var link = document.createElement('a');
+        link.download = 'allo-narkila-qr.png';
+        link.href = exportCanvas.toDataURL('image/png');
+        link.click();
+      };
+
+      // Copy URL
+      window.copyURL = function () {
+        navigator.clipboard.writeText(targetURL).then(function () {
+          showToast();
+        }).catch(function () {
+          // Fallback
+          var textArea = document.createElement('textarea');
+          textArea.value = targetURL;
+          textArea.style.position = 'fixed';
+          textArea.style.opacity = '0';
+          document.body.appendChild(textArea);
+          textArea.select();
+          document.execCommand('copy');
+          document.body.removeChild(textArea);
+          showToast();
+        });
+      };
+
+      function showToast() {
+        var toast = document.getElementById('copyToast');
+        toast.classList.add('show');
+        setTimeout(function () {
+          toast.classList.remove('show');
+        }, 2500);
+      }
+    })();
+  </script>
+
+</body>
+</html>

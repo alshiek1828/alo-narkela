@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!-- SEO Meta Tags -->
+  <title>الإحصائيات المباشرة | الو نركيلة</title>
+  <meta name="description" content="إحصائيات مباشرة لطلبات وزوار الو نركيلة - أفضل نكهات الاراكيل في العراق">
+  <meta name="keywords" content="إحصائيات, الو نركيلة, نكهات اراكيل, طلبات, زوار">
+  <meta name="author" content="الو نركيلة">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://allo-narkila.netlify.app/stats.html">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="الإحصائيات المباشرة | الو نركيلة">
+  <meta property="og:description" content="تابع إحصائيات الطلبات والزوار مباشرة">
+  <meta property="og:url" content="https://allo-narkila.netlify.app/stats.html">
+  <meta property="og:site_name" content="الو نركيلة">
+  <meta property="og:locale" content="ar_IQ">
+
+  <!-- PWA Meta Tags -->
+  <meta name="theme-color" content="#0a0a0f">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="الو نركيلة">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="generated-icon.png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* Public Stats Page Styles */
+    .stats-page {
+      min-height: 100vh;
+      padding-top: calc(var(--navbar-height) + 30px);
+      padding-bottom: 60px;
+    }
+
+    .stats-page-header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .stats-page-header h2 {
+      font-size: 2.4rem;
+      font-weight: 800;
+      background: var(--gold-text);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 12px;
+    }
+
+    .stats-page-header p {
+      color: var(--text-secondary);
+      font-size: 1.05rem;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .stats-page-header .title-decoration {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .stats-page-header .title-decoration .line {
+      width: 50px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold-start));
+    }
+
+    .stats-page-header .title-decoration .line:last-child {
+      background: linear-gradient(90deg, var(--gold-start), transparent);
+    }
+
+    .stats-page-header .title-decoration .diamond {
+      width: 8px;
+      height: 8px;
+      background: var(--gold);
+      transform: rotate(45deg);
+      flex-shrink: 0;
+    }
+
+    /* Live indicator */
+    .live-indicator {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      background: rgba(46, 204, 113, 0.1);
+      border: 1px solid rgba(46, 204, 113, 0.25);
+      border-radius: var(--radius-full);
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--success);
+      margin-bottom: 16px;
+    }
+
+    .live-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--success);
+      border-radius: 50%;
+      animation: pulse-gold 1.5s ease-in-out infinite;
+      box-shadow: 0 0 8px rgba(46, 204, 113, 0.5);
+    }
+
+    /* Summary Cards */
+    .public-summary {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .public-summary-card {
+      background: var(--bg-glass);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px 20px;
+      text-align: center;
+      transition: all var(--transition-normal);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .public-summary-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--gold);
+      opacity: 0;
+      transition: opacity var(--transition-normal);
+    }
+
+    .public-summary-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--border-gold);
+      box-shadow: var(--shadow-gold);
+    }
+
+    .public-summary-card:hover::before {
+      opacity: 1;
+    }
+
+    .public-summary-card .pub-icon {
+      width: 50px;
+      height: 50px;
+      margin: 0 auto 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--radius-md);
+      background: rgba(201, 168, 76, 0.1);
+      color: var(--gold-start);
+      font-size: 1.2rem;
+    }
+
+    .public-summary-card .pub-value {
+      font-size: 2rem;
+      font-weight: 900;
+      background: var(--gold-text);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 4px;
+    }
+
+    .public-summary-card .pub-label {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    /* Tables Section */
+    .public-tables-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    .public-table-section {
+      background: var(--bg-glass);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .public-table-section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--border);
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .public-table-section-header h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--gold-start);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .public-table-section-header h3 i {
+      font-size: 1rem;
+    }
+
+    .pub-table-toolbar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .pub-table-toolbar input {
+      padding: 8px 34px 8px 12px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-full);
+      color: var(--text-primary);
+      font-size: 0.82rem;
+      font-family: var(--font-family);
+      width: 160px;
+      transition: all var(--transition-normal);
+    }
+
+    .pub-table-toolbar input:focus {
+      border-color: var(--border-gold);
+      box-shadow: 0 0 0 2px rgba(201, 168, 76, 0.08);
+      outline: none;
+    }
+
+    .pub-table-toolbar input::placeholder {
+      color: var(--text-muted);
+    }
+
+    .pub-table-toolbar select {
+      padding: 8px 30px 8px 10px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-full);
+      color: var(--text-primary);
+      font-size: 0.82rem;
+      font-family: var(--font-family);
+      cursor: pointer;
+      appearance: none;
+      -webkit-appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'%3E%3Cpath fill='%238a8a9a' d='M5 7L0 2h10z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: left 8px center;
+      transition: all var(--transition-normal);
+    }
+
+    .pub-table-toolbar select:focus {
+      border-color: var(--border-gold);
+      outline: none;
+    }
+
+    .pub-table-toolbar select option {
+      background: var(--bg-card);
+      color: var(--text-primary);
+    }
+
+    .pub-table-body {
+      overflow-x: auto;
+      max-height: 400px;
+      overflow-y: auto;
+    }
+
+    .pub-table-body::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .pub-table-body::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .pub-table-body::-webkit-scrollbar-thumb {
+      background: rgba(201, 168, 76, 0.2);
+      border-radius: 10px;
+    }
+
+    .pub-table-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 20px;
+      border-top: 1px solid var(--border);
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .pub-table-footer .page-info {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pub-pagination-btns {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pub-pagination-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      padding: 6px 14px;
+      background: var(--bg-glass-strong);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-sm);
+      color: var(--text-secondary);
+      font-size: 0.8rem;
+      font-weight: 600;
+      font-family: var(--font-family);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .pub-pagination-btn:hover:not(:disabled) {
+      background: rgba(201, 168, 76, 0.1);
+      color: var(--gold-start);
+      border-color: var(--border-gold);
+    }
+
+    .pub-pagination-btn:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+
+    /* Charts Section */
+    .public-charts-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    .pub-chart-card {
+      background: var(--bg-glass);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+    }
+
+    .pub-chart-card h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--gold-start);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .pub-chart-card h3 i {
+      font-size: 1rem;
+    }
+
+    .pub-chart-container {
+      position: relative;
+      width: 100%;
+      max-height: 350px;
+    }
+
+    /* Responsive */
+    @media (max-width: 1200px) {
+      .public-tables-grid {
+        grid-template-columns: 1fr;
+      }
+      .public-charts-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 1024px) {
+      .public-summary {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .public-table-section-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .pub-table-toolbar {
+        width: 100%;
+      }
+      .pub-table-toolbar input {
+        flex: 1;
+        min-width: 120px;
+      }
+      .pub-table-footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .public-summary {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .public-summary-card {
+        padding: 18px 14px;
+      }
+      .public-summary-card .pub-value {
+        font-size: 1.5rem;
+      }
+      .stats-page-header h2 {
+        font-size: 1.8rem;
+      }
+      .pub-chart-card {
+        padding: 18px 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- LOADING SPINNER -->
+  <div class="loading-spinner" id="loadingSpinner">
+    <div class="spinner"></div>
+    <p>جاري تحميل الإحصائيات...</p>
+  </div>
+
+  <!-- TOAST CONTAINER -->
+  <div class="toast-container"></div>
+
+  <!-- NAVIGATION -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar-logo" onclick="window.location.href='index.html'" title="الو نركيلة">
+      <img src="generated-icon.png" alt="الو نركيلة">
+      <span>الو نركيلة</span>
+    </div>
+
+    <div class="navbar-links">
+      <a href="index.html">الرئيسية</a>
+      <a href="index.html#menu">قائمة النكهات</a>
+      <a href="stats.html" class="active">الإحصائيات</a>
+      <a href="index.html#contact">تواصل معنا</a>
+    </div>
+
+    <button class="hamburger" id="hamburgerBtn" aria-label="فتح القائمة">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- SIDE PANEL (Mobile) -->
+  <div class="side-panel-overlay" id="sidePanelOverlay"></div>
+  <div class="side-panel" id="sidePanel">
+    <div class="side-panel-header">
+      <span class="logo-text">الو نركيلة</span>
+      <button class="side-panel-close" id="sidePanelClose" aria-label="إغلاق القائمة">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+
+    <div class="side-panel-nav">
+      <a href="index.html"><i class="fas fa-home"></i> الرئيسية</a>
+      <a href="index.html#menu"><i class="fas fa-fire"></i> قائمة النكهات</a>
+      <a href="stats.html" class="active"><i class="fas fa-chart-bar"></i> الإحصائيات</a>
+      <a href="index.html#contact"><i class="fas fa-envelope"></i> تواصل معنا</a>
+    </div>
+
+    <div class="side-panel-social">
+      <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <main class="stats-page page-transition">
+    <div class="container">
+
+      <!-- Page Header -->
+      <div class="stats-page-header">
+        <div class="live-indicator">
+          <span class="live-dot"></span>
+          مباشر
+        </div>
+        <h2>الإحصائيات المباشرة</h2>
+        <p>تابع إحصائيات الطلبات والزوار في الوقت الحقيقي</p>
+        <div class="title-decoration">
+          <span class="line"></span>
+          <span class="diamond"></span>
+          <span class="line"></span>
+        </div>
+      </div>
+
+      <!-- Summary Cards -->
+      <div class="public-summary">
+        <div class="public-summary-card">
+          <div class="pub-icon"><i class="fas fa-shopping-cart"></i></div>
+          <div class="pub-value" id="totalOrders">0</div>
+          <div class="pub-label">إجمالي الطلبات</div>
+        </div>
+        <div class="public-summary-card">
+          <div class="pub-icon"><i class="fas fa-eye"></i></div>
+          <div class="pub-value" id="totalVisitors">0</div>
+          <div class="pub-label">إجمالي الزوار</div>
+        </div>
+        <div class="public-summary-card">
+          <div class="pub-icon"><i class="fas fa-layer-group"></i></div>
+          <div class="pub-value" id="totalFlavors">0</div>
+          <div class="pub-label">إجمالي النكهات</div>
+        </div>
+        <div class="public-summary-card">
+          <div class="pub-icon"><i class="fas fa-crown"></i></div>
+          <div class="pub-value" id="topFlavor" style="font-size:1.05rem;">—</div>
+          <div class="pub-label">أشهر نكهة</div>
+        </div>
+      </div>
+
+      <!-- Tables Grid -->
+      <div class="public-tables-grid">
+
+        <!-- Orders Table -->
+        <div class="public-table-section">
+          <div class="public-table-section-header">
+            <h3><i class="fas fa-shopping-bag"></i> الطلبات الأخيرة</h3>
+            <div class="pub-table-toolbar">
+              <input type="text" id="ordersSearch" placeholder="بحث..." oninput="filterOrders()">
+              <select id="ordersPageSize" onchange="resetOrdersPagination()">
+                <option value="10" selected>10</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+              </select>
+            </div>
+          </div>
+          <div class="pub-table-body">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>النكهة</th>
+                  <th>الكمية</th>
+                  <th>البلد</th>
+                  <th>الوقت</th>
+                </tr>
+              </thead>
+              <tbody id="ordersTableBody">
+                <tr><td colspan="4" class="text-center text-secondary" style="padding:40px;">جاري التحميل...</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="pub-table-footer">
+            <div class="page-info" id="ordersPageInfo">0 من 0</div>
+            <div class="pub-pagination-btns">
+              <button class="pub-pagination-btn" id="ordersPrevBtn" onclick="ordersPrevPage()" disabled>
+                <i class="fas fa-chevron-right"></i> السابق
+              </button>
+              <button class="pub-pagination-btn" id="ordersNextBtn" onclick="ordersNextPage()">
+                التالي <i class="fas fa-chevron-left"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Visitors Table -->
+        <div class="public-table-section">
+          <div class="public-table-section-header">
+            <h3><i class="fas fa-users"></i> الزوار الأخيرون</h3>
+            <div class="pub-table-toolbar">
+              <input type="text" id="visitorsSearch" placeholder="بحث..." oninput="filterVisitors()">
+              <select id="visitorsPageSize" onchange="resetVisitorsPagination()">
+                <option value="10" selected>10</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+              </select>
+            </div>
+          </div>
+          <div class="pub-table-body">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>البلد</th>
+                  <th>المتصفح</th>
+                  <th>الوقت</th>
+                </tr>
+              </thead>
+              <tbody id="visitorsTableBody">
+                <tr><td colspan="3" class="text-center text-secondary" style="padding:40px;">جاري التحميل...</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="pub-table-footer">
+            <div class="page-info" id="visitorsPageInfo">0 من 0</div>
+            <div class="pub-pagination-btns">
+              <button class="pub-pagination-btn" id="visitorsPrevBtn" onclick="visitorsPrevPage()" disabled>
+                <i class="fas fa-chevron-right"></i> السابق
+              </button>
+              <button class="pub-pagination-btn" id="visitorsNextBtn" onclick="visitorsNextPage()">
+                التالي <i class="fas fa-chevron-left"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Charts Grid -->
+      <div class="public-charts-grid">
+        <div class="pub-chart-card">
+          <h3><i class="fas fa-chart-bar"></i> الطلبات حسب النكهة</h3>
+          <div class="pub-chart-container">
+            <canvas id="ordersChart"></canvas>
+          </div>
+        </div>
+        <div class="pub-chart-card">
+          <h3><i class="fas fa-chart-pie"></i> الزوار حسب البلد</h3>
+          <div class="pub-chart-container">
+            <canvas id="visitorsChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <img src="generated-icon.png" alt="الو نركيلة">
+            <span>الو نركيلة</span>
+          </div>
+          <p>
+            وجهتك الأولى لأفضل نكهات الاراكيل في العراق. جودة عالية وأسعار مناسبة مع توصيل سريع.
+          </p>
+          <div class="footer-social">
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-column">
+          <h4>روابط سريعة</h4>
+          <ul>
+            <li><a href="index.html"><i class="fas fa-chevron-left"></i> الرئيسية</a></li>
+            <li><a href="index.html#menu"><i class="fas fa-chevron-left"></i> قائمة النكهات</a></li>
+            <li><a href="stats.html"><i class="fas fa-chevron-left"></i> الإحصائيات</a></li>
+            <li><a href="index.html#contact"><i class="fas fa-chevron-left"></i> تواصل معنا</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>معلومات التواصل</h4>
+          <ul>
+            <li><a href="https://wa.me/9647702604040" target="_blank"><i class="fab fa-whatsapp"></i> 9647702604040+</a></li>
+            <li><a href="#"><i class="fas fa-map-marker-alt"></i> العراق</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>تابعنا</h4>
+          <ul>
+            <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+            <li><a href="#"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+            <li><a href="#"><i class="fab fa-tiktok"></i> TikTok</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2025 <a href="#">الو نركيلة</a>. جميع الحقوق محفوظة.</p>
+        <p>صُمم بـ <span style="color: var(--danger);">❤</span> في العراق</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCROLL TO TOP -->
+  <button class="scroll-top" id="scrollTopBtn" aria-label="العودة للأعلى">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <!-- Firebase Compat SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+
+  <script>
+    // ===== Firebase Init =====
+    const firebaseConfig = {
+      apiKey: "AIzaSyDZt1RSz5d9wyn-C5S3kF8XVYjEldtSZss",
+      authDomain: "gmae-fae90.firebaseapp.com",
+      databaseURL: "https://gmae-fae90-default-rtdb.firebaseio.com",
+      projectId: "gmae-fae90",
+      storageBucket: "gmae-fae90.firebasestorage.app",
+      messagingSenderId: "768482186329",
+      appId: "1:768482186329:web:ae3b54ed2aaaf89d4e0d48",
+      measurementId: "G-KGQ0RQ33XS"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+
+    // ===== State =====
+    let allOrders = [];
+    let allVisitors = [];
+    let allFlavors = [];
+    let filteredOrders = [];
+    let filteredVisitors = [];
+    let ordersPage = 0;
+    let visitorsPage = 0;
+    let ordersChart = null;
+    let visitorsChart = null;
+
+    // Gold color palette for charts
+    const goldColors = [
+      'rgba(201, 168, 76, 0.85)',
+      'rgba(240, 208, 120, 0.85)',
+      'rgba(212, 162, 78, 0.85)',
+      'rgba(180, 150, 60, 0.85)',
+      'rgba(255, 215, 100, 0.85)',
+      'rgba(160, 130, 50, 0.85)',
+      'rgba(220, 185, 90, 0.85)',
+      'rgba(140, 115, 45, 0.85)',
+      'rgba(200, 170, 75, 0.85)',
+      'rgba(230, 200, 110, 0.85)'
+    ];
+    const goldBorders = [
+      'rgba(201, 168, 76, 1)',
+      'rgba(240, 208, 120, 1)',
+      'rgba(212, 162, 78, 1)',
+      'rgba(180, 150, 60, 1)',
+      'rgba(255, 215, 100, 1)',
+      'rgba(160, 130, 50, 1)',
+      'rgba(220, 185, 90, 1)',
+      'rgba(140, 115, 45, 1)',
+      'rgba(200, 170, 75, 1)',
+      'rgba(230, 200, 110, 1)'
+    ];
+
+    // ===== Data Loading =====
+    function loadData() {
+      const ordersRef = db.ref('orders').orderByKey().limitToLast(500);
+      const visitsRef = db.ref('visits').orderByKey().limitToLast(500);
+      const flavorsRef = db.ref('flavors');
+
+      ordersRef.on('value', (snap) => {
+        allOrders = [];
+        snap.forEach((child) => {
+          const d = child.val();
+          allOrders.push({
+            id: child.key,
+            flavor: d.flavor || '—',
+            quantity: d.quantity || 1,
+            ip: d.ip || '—',
+            country: d.country || '—',
+            browser: d.browser || '—',
+            timestamp: d.timestamp || 0
+          });
+        });
+        allOrders.reverse();
+        filteredOrders = [...allOrders];
+        ordersPage = 0;
+        updateSummary();
+        renderOrdersTable();
+        updateOrdersChart();
+      });
+
+      visitsRef.on('value', (snap) => {
+        allVisitors = [];
+        snap.forEach((child) => {
+          const d = child.val();
+          allVisitors.push({
+            id: child.key,
+            ip: d.ip || '—',
+            country: d.country || '—',
+            browser: d.browser || '—',
+            timestamp: d.timestamp || 0
+          });
+        });
+        allVisitors.reverse();
+        filteredVisitors = [...allVisitors];
+        visitorsPage = 0;
+        updateSummary();
+        renderVisitorsTable();
+        updateVisitorsChart();
+      });
+
+      flavorsRef.on('value', (snap) => {
+        allFlavors = [];
+        snap.forEach((child) => {
+          allFlavors.push({ id: child.key, ...child.val() });
+        });
+        updateSummary();
+      });
+
+      // Hide loader
+      setTimeout(() => {
+        document.getElementById('loadingSpinner').classList.add('hidden');
+      }, 1200);
+    }
+
+    // ===== Summary =====
+    function updateSummary() {
+      document.getElementById('totalOrders').textContent = allOrders.length.toLocaleString('ar-EG');
+      document.getElementById('totalVisitors').textContent = allVisitors.length.toLocaleString('ar-EG');
+      document.getElementById('totalFlavors').textContent = allFlavors.length.toLocaleString('ar-EG');
+
+      // Top flavor
+      const flavorCount = {};
+      allOrders.forEach(o => {
+        const name = o.flavor;
+        flavorCount[name] = (flavorCount[name] || 0) + (o.quantity || 1);
+      });
+      const top = Object.entries(flavorCount).sort((a, b) => b[1] - a[1])[0];
+      document.getElementById('topFlavor').textContent = top ? top[0] : '—';
+    }
+
+    // ===== Format Helpers =====
+    function formatTime(ts) {
+      if (!ts) return '—';
+      const d = new Date(ts);
+      return d.toLocaleDateString('ar-IQ', {
+        year: 'numeric', month: '2-digit', day: '2-digit',
+        hour: '2-digit', minute: '2-digit'
+      });
+    }
+
+    function truncateBrowser(b) {
+      if (!b || b === '—') return '—';
+      if (b.length <= 18) return b;
+      return b.substring(0, 18) + '…';
+    }
+
+    // ===== Orders Table (Public - no IP) =====
+    function filterOrders() {
+      const q = document.getElementById('ordersSearch').value.trim().toLowerCase();
+      filteredOrders = allOrders.filter(o =>
+        o.flavor.toLowerCase().includes(q) ||
+        o.country.toLowerCase().includes(q)
+      );
+      ordersPage = 0;
+      renderOrdersTable();
+    }
+
+    function resetOrdersPagination() {
+      ordersPage = 0;
+      renderOrdersTable();
+    }
+
+    function renderOrdersTable() {
+      const pageSize = parseInt(document.getElementById('ordersPageSize').value);
+      const start = ordersPage * pageSize;
+      const end = start + pageSize;
+      const pageData = filteredOrders.slice(start, end);
+      const tbody = document.getElementById('ordersTableBody');
+
+      if (pageData.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="4" class="text-center text-secondary" style="padding:40px;"><i class="fas fa-inbox" style="font-size:2rem;display:block;margin-bottom:10px;color:var(--text-muted);"></i>لا توجد بيانات</td></tr>';
+      } else {
+        tbody.innerHTML = pageData.map(o => `
+          <tr>
+            <td>${escapeHtml(o.flavor)}</td>
+            <td>${o.quantity}</td>
+            <td>${escapeHtml(o.country)}</td>
+            <td style="font-size:0.82rem;color:var(--text-secondary);white-space:nowrap;">${formatTime(o.timestamp)}</td>
+          </tr>
+        `).join('');
+      }
+
+      const total = filteredOrders.length;
+      const showing = Math.min(end, total);
+      document.getElementById('ordersPageInfo').textContent = total > 0
+        ? `${start + 1}–${showing} من ${total}`
+        : '0 من 0';
+
+      document.getElementById('ordersPrevBtn').disabled = ordersPage === 0;
+      document.getElementById('ordersNextBtn').disabled = end >= total;
+    }
+
+    function ordersPrevPage() {
+      if (ordersPage > 0) { ordersPage--; renderOrdersTable(); }
+    }
+
+    function ordersNextPage() {
+      const pageSize = parseInt(document.getElementById('ordersPageSize').value);
+      if ((ordersPage + 1) * pageSize < filteredOrders.length) { ordersPage++; renderOrdersTable(); }
+    }
+
+    // ===== Visitors Table (Public - no IP) =====
+    function filterVisitors() {
+      const q = document.getElementById('visitorsSearch').value.trim().toLowerCase();
+      filteredVisitors = allVisitors.filter(v =>
+        v.country.toLowerCase().includes(q) ||
+        v.browser.toLowerCase().includes(q)
+      );
+      visitorsPage = 0;
+      renderVisitorsTable();
+    }
+
+    function resetVisitorsPagination() {
+      visitorsPage = 0;
+      renderVisitorsTable();
+    }
+
+    function renderVisitorsTable() {
+      const pageSize = parseInt(document.getElementById('visitorsPageSize').value);
+      const start = visitorsPage * pageSize;
+      const end = start + pageSize;
+      const pageData = filteredVisitors.slice(start, end);
+      const tbody = document.getElementById('visitorsTableBody');
+
+      if (pageData.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="3" class="text-center text-secondary" style="padding:40px;"><i class="fas fa-inbox" style="font-size:2rem;display:block;margin-bottom:10px;color:var(--text-muted);"></i>لا توجد بيانات</td></tr>';
+      } else {
+        tbody.innerHTML = pageData.map(v => `
+          <tr>
+            <td>${escapeHtml(v.country)}</td>
+            <td title="${escapeHtml(v.browser)}" style="font-size:0.82rem;">${escapeHtml(truncateBrowser(v.browser))}</td>
+            <td style="font-size:0.82rem;color:var(--text-secondary);white-space:nowrap;">${formatTime(v.timestamp)}</td>
+          </tr>
+        `).join('');
+      }
+
+      const total = filteredVisitors.length;
+      const showing = Math.min(end, total);
+      document.getElementById('visitorsPageInfo').textContent = total > 0
+        ? `${start + 1}–${showing} من ${total}`
+        : '0 من 0';
+
+      document.getElementById('visitorsPrevBtn').disabled = visitorsPage === 0;
+      document.getElementById('visitorsNextBtn').disabled = end >= total;
+    }
+
+    function visitorsPrevPage() {
+      if (visitorsPage > 0) { visitorsPage--; renderVisitorsTable(); }
+    }
+
+    function visitorsNextPage() {
+      const pageSize = parseInt(document.getElementById('visitorsPageSize').value);
+      if ((visitorsPage + 1) * pageSize < filteredVisitors.length) { visitorsPage++; renderVisitorsTable(); }
+    }
+
+    // ===== Charts =====
+    function updateOrdersChart() {
+      const flavorCount = {};
+      allOrders.forEach(o => {
+        flavorCount[o.flavor] = (flavorCount[o.flavor] || 0) + (o.quantity || 1);
+      });
+      const sorted = Object.entries(flavorCount).sort((a, b) => b[1] - a[1]).slice(0, 10);
+      const labels = sorted.map(s => s[0]);
+      const data = sorted.map(s => s[1]);
+
+      const ctx = document.getElementById('ordersChart').getContext('2d');
+      if (ordersChart) ordersChart.destroy();
+
+      ordersChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: 'عدد الطلبات',
+            data: data,
+            backgroundColor: goldColors.slice(0, data.length),
+            borderColor: goldBorders.slice(0, data.length),
+            borderWidth: 1,
+            borderRadius: 6,
+            maxBarThickness: 40
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              backgroundColor: 'rgba(18, 18, 26, 0.95)',
+              titleColor: '#f0d078',
+              bodyColor: '#f0f0f0',
+              borderColor: 'rgba(201, 168, 76, 0.3)',
+              borderWidth: 1,
+              cornerRadius: 8,
+              padding: 12,
+              titleFont: { family: 'Tajawal', size: 14, weight: '700' },
+              bodyFont: { family: 'Tajawal', size: 13 }
+            }
+          },
+          scales: {
+            x: {
+              ticks: { color: '#8a8a9a', font: { family: 'Tajawal', size: 11 }, maxRotation: 45 },
+              grid: { color: 'rgba(255,255,255,0.04)' }
+            },
+            y: {
+              ticks: { color: '#8a8a9a', font: { family: 'Tajawal', size: 11 } },
+              grid: { color: 'rgba(255,255,255,0.04)' },
+              beginAtZero: true
+            }
+          }
+        }
+      });
+    }
+
+    function updateVisitorsChart() {
+      const countryCount = {};
+      allVisitors.forEach(v => {
+        countryCount[v.country] = (countryCount[v.country] || 0) + 1;
+      });
+      const sorted = Object.entries(countryCount).sort((a, b) => b[1] - a[1]).slice(0, 8);
+      const labels = sorted.map(s => s[0]);
+      const data = sorted.map(s => s[1]);
+
+      const ctx = document.getElementById('visitorsChart').getContext('2d');
+      if (visitorsChart) visitorsChart.destroy();
+
+      visitorsChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+          labels: labels,
+          datasets: [{
+            data: data,
+            backgroundColor: goldColors.slice(0, data.length),
+            borderColor: 'rgba(10, 10, 15, 0.8)',
+            borderWidth: 2,
+            hoverOffset: 8
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: {
+                color: '#8a8a9a',
+                font: { family: 'Tajawal', size: 12 },
+                padding: 16,
+                usePointStyle: true,
+                pointStyleWidth: 10
+              }
+            },
+            tooltip: {
+              backgroundColor: 'rgba(18, 18, 26, 0.95)',
+              titleColor: '#f0d078',
+              bodyColor: '#f0f0f0',
+              borderColor: 'rgba(201, 168, 76, 0.3)',
+              borderWidth: 1,
+              cornerRadius: 8,
+              padding: 12,
+              titleFont: { family: 'Tajawal', size: 14, weight: '700' },
+              bodyFont: { family: 'Tajawal', size: 13 }
+            }
+          }
+        }
+      });
+    }
+
+    // ===== Utilities =====
+    function escapeHtml(str) {
+      if (!str) return '';
+      const div = document.createElement('div');
+      div.textContent = str;
+      return div.innerHTML;
+    }
+
+    // ===== Navigation & UI =====
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const sidePanel = document.getElementById('sidePanel');
+    const sidePanelOverlay = document.getElementById('sidePanelOverlay');
+    const sidePanelClose = document.getElementById('sidePanelClose');
+
+    function openSidePanel() {
+      sidePanel.classList.add('active');
+      sidePanelOverlay.classList.add('active');
+      hamburgerBtn.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeSidePanel() {
+      sidePanel.classList.remove('active');
+      sidePanelOverlay.classList.remove('active');
+      hamburgerBtn.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    hamburgerBtn.addEventListener('click', () => {
+      sidePanel.classList.contains('active') ? closeSidePanel() : openSidePanel();
+    });
+    sidePanelOverlay.addEventListener('click', closeSidePanel);
+    sidePanelClose.addEventListener('click', closeSidePanel);
+
+    sidePanel.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', closeSidePanel);
+    });
+
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 30);
+    });
+
+    // Scroll to top
+    const scrollTopBtn = document.getElementById('scrollTopBtn');
+    window.addEventListener('scroll', () => {
+      scrollTopBtn.classList.toggle('visible', window.scrollY > 400);
+    });
+    scrollTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // ===== Init =====
+    loadData();
+  </script>
+
+</body>
+</html>

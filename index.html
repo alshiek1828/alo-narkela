@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!-- SEO Meta Tags -->
+  <title>الو نركيلة | أفضل نكهات الاراكيل في العراق</title>
+  <meta name="description" content="الو نركيلة - أفضل نكهات الاراكيل بأفضل الأسعار في العراق. اطلب نكهاتك المفضلة عبر واتساب مع توصيل سريع وضمان الجودة.">
+  <meta name="keywords" content="نكهات اراكيل, معسل, نركيلة, hookah, shisha, العراق, الو نركيلة, flavors">
+  <meta name="author" content="الو نركيلة">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://allo-narkila.netlify.app/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="الو نركيلة | أفضل نكهات الاراكيل في العراق">
+  <meta property="og:description" content="أفضل نكهات الاراكيل بأفضل الأسعار في العراق. اطلب الآن عبر واتساب!">
+  <meta property="og:url" content="https://allo-narkila.netlify.app/">
+  <meta property="og:site_name" content="الو نركيلة">
+  <meta property="og:locale" content="ar_IQ">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="الو نركيلة | أفضل نكهات الاراكيل في العراق">
+  <meta name="twitter:description" content="أفضل نكهات الاراكيل بأفضل الأسعار في العراق. اطلب الآن عبر واتساب!">
+
+  <!-- PWA Meta Tags -->
+  <meta name="theme-color" content="#0a0a0f">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="الو نركيلة">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="generated-icon.png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ============================
+       LOADING SPINNER
+       ============================ -->
+  <div class="loading-spinner" id="loadingSpinner">
+    <div class="spinner"></div>
+    <p>جاري تحميل الو نركيلة...</p>
+  </div>
+
+  <!-- ============================
+       TOAST CONTAINER
+       ============================ -->
+  <div class="toast-container"></div>
+
+  <!-- ============================
+       NAVIGATION
+       ============================ -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar-logo" onclick="handleLogoClick()" title="الو نركيلة">
+      <img src="generated-icon.png" alt="الو نركيلة">
+      <span>الو نركيلة</span>
+    </div>
+
+    <div class="navbar-links">
+      <a href="#hero" class="active">الرئيسية</a>
+      <a href="#menu">قائمة النكهات</a>
+      <a href="#about">من نحن</a>
+      <a href="#contact">تواصل معنا</a>
+    </div>
+
+    <button class="hamburger" id="hamburgerBtn" aria-label="فتح القائمة">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- ============================
+       SIDE PANEL (Mobile)
+       ============================ -->
+  <div class="side-panel-overlay" id="sidePanelOverlay"></div>
+  <div class="side-panel" id="sidePanel">
+    <div class="side-panel-header">
+      <span class="logo-text">الو نركيلة</span>
+      <button class="side-panel-close" id="sidePanelClose" aria-label="إغلاق القائمة">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+
+    <div class="side-panel-nav">
+      <a href="#hero" class="active"><i class="fas fa-home"></i> الرئيسية</a>
+      <a href="#menu"><i class="fas fa-fire"></i> قائمة النكهات</a>
+      <a href="#about"><i class="fas fa-info-circle"></i> من نحن</a>
+      <a href="#contact"><i class="fas fa-envelope"></i> تواصل معنا</a>
+    </div>
+
+    <div class="side-panel-social">
+      <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+    </div>
+  </div>
+
+  <!-- ============================
+       PUBLIC VIEW
+       ============================ -->
+  <div id="publicView">
+
+    <!-- ========================
+         HERO SECTION
+         ======================== -->
+    <section class="hero" id="hero">
+      <div class="hero-bg"></div>
+
+      <div class="hero-smoke">
+        <div class="smoke-particle"></div>
+        <div class="smoke-particle"></div>
+        <div class="smoke-particle"></div>
+        <div class="smoke-particle"></div>
+        <div class="smoke-particle"></div>
+      </div>
+
+      <div class="hero-particles"></div>
+
+      <div class="hero-decoration"></div>
+      <div class="hero-decoration"></div>
+
+      <div class="hero-content">
+        <div class="hero-badge">
+          <i class="fas fa-star"></i>
+          الأفضل في العراق
+        </div>
+
+        <h1 class="hero-title">
+          <span class="gold-text">الو نركيلة</span>
+        </h1>
+
+        <p class="hero-subtitle">
+          أفضل نكهات الاراكيل بأفضل الأسعار في العراق
+        </p>
+
+        <div class="hero-actions">
+          <a href="#menu" class="btn-gold">
+            <i class="fas fa-fire"></i>
+            تصفح النكهات
+          </a>
+          <a href="https://wa.me/9647702604040" target="_blank" class="btn-whatsapp" style="padding: 14px 32px; font-size: 1rem;">
+            <i class="fab fa-whatsapp"></i>
+            اطلب عبر واتساب
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-scroll-indicator">
+        <span>اكتشف المزيد</span>
+        <div class="scroll-line"></div>
+      </div>
+    </section>
+
+    <!-- ========================
+         STATS SECTION
+         ======================== -->
+    <section class="stats-section">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-card animate-fade-up">
+            <div class="stat-icon">
+              <i class="fas fa-layer-group"></i>
+            </div>
+            <div class="stat-number" id="statTotalFlavors">0</div>
+            <div class="stat-label">عدد النكهات</div>
+          </div>
+
+          <div class="stat-card animate-fade-up" style="transition-delay: 0.1s;">
+            <div class="stat-icon">
+              <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="stat-number" id="statAvailable">0</div>
+            <div class="stat-label">النكهات المتوفرة</div>
+          </div>
+
+          <div class="stat-card animate-fade-up" style="transition-delay: 0.2s;">
+            <div class="stat-icon">
+              <i class="fas fa-shopping-cart"></i>
+            </div>
+            <div class="stat-number" id="statTotalOrders">0</div>
+            <div class="stat-label">إجمالي الطلبات</div>
+          </div>
+
+          <div class="stat-card animate-fade-up" style="transition-delay: 0.3s;">
+            <div class="stat-icon">
+              <i class="fas fa-crown"></i>
+            </div>
+            <div class="stat-number" id="statTopFlavor" style="font-size: 1.1rem;">لا يوجد</div>
+            <div class="stat-label">الأكثر طلباً</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================
+         SEARCH & FILTER
+         ======================== -->
+    <section class="search-filter-section">
+      <div class="container">
+        <div class="search-filter-wrapper">
+          <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="ابحث عن نكهة...">
+            <i class="fas fa-search"></i>
+          </div>
+
+          <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="all" onclick="setFilter('all')">الكل</button>
+            <button class="filter-btn" data-filter="available" onclick="setFilter('available')">متوفر</button>
+            <button class="filter-btn" data-filter="unavailable" onclick="setFilter('unavailable')">غير متوفر</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================
+         FLAVORS SECTION
+         ======================== -->
+    <section class="flavors-section" id="menu">
+      <div class="container">
+        <div class="section-title animate-fade-up">
+          <h2>قائمة النكهات</h2>
+          <p>اكتشف مجموعتنا الواسعة من النكهات الفاخرة</p>
+          <div class="title-decoration">
+            <span class="line"></span>
+            <span class="diamond"></span>
+            <span class="line"></span>
+          </div>
+        </div>
+
+        <div id="flavorsGrid" class="flavors-grid">
+          <!-- Flavor cards rendered by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================
+         ABOUT SECTION
+         ======================== -->
+    <section class="about-section" id="about">
+      <div class="container">
+        <div class="section-title animate-fade-up">
+          <h2>من نحن</h2>
+          <p>نحن نقدم لك أفضل تجربة نركيلة</p>
+          <div class="title-decoration">
+            <span class="line"></span>
+            <span class="diamond"></span>
+            <span class="line"></span>
+          </div>
+        </div>
+
+        <div class="about-content animate-fade-up">
+          <p>
+            مرحباً بكم في <strong style="color: var(--gold-start);">الو نركيلة</strong> — وجهتكم الأولى لأفضل نكهات الاراكيل في العراق.
+            نحرص على توفير أجود أنواع المعسل والنكهات بأسعار مناسبة للجميع، مع خدمة توصيل سريعة تصل إليك أينما كنت.
+            هدفنا هو أن تستمتع بتجربة نركيلة مثالية في كل مرة!
+          </p>
+
+          <a href="about.html" class="btn-outline" style="margin-bottom: 40px;">
+            <i class="fas fa-arrow-left"></i>
+            اقرأ المزيد
+          </a>
+        </div>
+
+        <div class="about-features">
+          <div class="about-feature-card animate-fade-up">
+            <div class="feature-icon">
+              <i class="fas fa-shipping-fast"></i>
+            </div>
+            <h3>توصيل سريع</h3>
+            <p>نوصل طلبك بأسرع وقت ممكن إلى أي مكان في العراق</p>
+          </div>
+
+          <div class="about-feature-card animate-fade-up" style="transition-delay: 0.1s;">
+            <div class="feature-icon">
+              <i class="fas fa-tags"></i>
+            </div>
+            <h3>أفضل الأسعار</h3>
+            <p>أسعار تنافسية لا تُقارن مع جودة عالية دائماً</p>
+          </div>
+
+          <div class="about-feature-card animate-fade-up" style="transition-delay: 0.2s;">
+            <div class="feature-icon">
+              <i class="fas fa-shield-alt"></i>
+            </div>
+            <h3>ضمان الجودة</h3>
+            <p>جميع منتجاتنا أصلية ومضمونة 100%</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================
+         CONTACT SECTION
+         ======================== -->
+    <section class="contact-section" id="contact">
+      <div class="container">
+        <div class="section-title animate-fade-up">
+          <h2>تواصل معنا</h2>
+          <p>نحن هنا لخدمتك على مدار الساعة</p>
+          <div class="title-decoration">
+            <span class="line"></span>
+            <span class="diamond"></span>
+            <span class="line"></span>
+          </div>
+        </div>
+
+        <div class="contact-preview animate-fade-up">
+          <p>
+            هل تريد طلب نكهة معينة أو لديك استفسار؟ تواصل معنا مباشرة عبر واتساب وسنرد عليك في أسرع وقت ممكن.
+          </p>
+
+          <div class="contact-info-cards">
+            <div class="contact-info-card">
+              <div class="info-icon">
+                <i class="fab fa-whatsapp"></i>
+              </div>
+              <div class="info-text">
+                <h4>واتساب</h4>
+                <p>9647702604040+</p>
+              </div>
+            </div>
+
+            <div class="contact-info-card">
+              <div class="info-icon">
+                <i class="fas fa-map-marker-alt"></i>
+              </div>
+              <div class="info-text">
+                <h4>الموقع</h4>
+                <p>العراق</p>
+              </div>
+            </div>
+          </div>
+
+          <a href="https://wa.me/9647702604040" target="_blank" class="btn-whatsapp" style="padding: 16px 40px; font-size: 1.05rem;">
+            <i class="fab fa-whatsapp"></i>
+            تواصل عبر واتساب
+          </a>
+
+          <div style="margin-top: 24px;">
+            <a href="contact.html" class="btn-outline">
+              <i class="fas fa-envelope"></i>
+              صفحة التواصل الكاملة
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================
+         FOOTER
+         ======================== -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <div class="footer-logo">
+              <img src="generated-icon.png" alt="الو نركيلة">
+              <span>الو نركيلة</span>
+            </div>
+            <p>
+              وجهتك الأولى لأفضل نكهات الاراكيل في العراق. جودة عالية وأسعار مناسبة مع توصيل سريع.
+            </p>
+            <div class="footer-social">
+              <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+              <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+            </div>
+          </div>
+
+          <div class="footer-column">
+            <h4>روابط سريعة</h4>
+            <ul>
+              <li><a href="#hero"><i class="fas fa-chevron-left"></i> الرئيسية</a></li>
+              <li><a href="#menu"><i class="fas fa-chevron-left"></i> قائمة النكهات</a></li>
+              <li><a href="#about"><i class="fas fa-chevron-left"></i> من نحن</a></li>
+              <li><a href="#contact"><i class="fas fa-chevron-left"></i> تواصل معنا</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-column">
+            <h4>معلومات التواصل</h4>
+            <ul>
+              <li><a href="https://wa.me/9647702604040" target="_blank"><i class="fab fa-whatsapp"></i> 9647702604040+</a></li>
+              <li><a href="#"><i class="fas fa-map-marker-alt"></i> العراق</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-column">
+            <h4>تابعنا</h4>
+            <ul>
+              <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+              <li><a href="#"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+              <li><a href="#"><i class="fab fa-tiktok"></i> TikTok</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>© 2025 <a href="#">الو نركيلة</a>. جميع الحقوق محفوظة.</p>
+          <p>صُمم بـ <span style="color: var(--danger);">❤</span> في العراق</p>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+  <!-- END publicView -->
+
+  <!-- ============================
+       ADMIN VIEW
+       ============================ -->
+  <div id="adminView" style="display: none;">
+    <div class="container admin-panel">
+      <div class="admin-header">
+        <h2><i class="fas fa-cog"></i> لوحة التحكم</h2>
+        <div class="admin-header-actions">
+          <button class="btn-gold" onclick="openAddModal()">
+            <i class="fas fa-plus"></i>
+            إضافة نكهة
+          </button>
+          <button class="btn-outline" onclick="handleLogout()">
+            <i class="fas fa-sign-out-alt"></i>
+            تسجيل الخروج
+          </button>
+        </div>
+      </div>
+
+      <div id="adminFlavorsGrid">
+        <!-- Admin flavor cards rendered by JS -->
+      </div>
+    </div>
+  </div>
+  <!-- END adminView -->
+
+  <!-- ============================
+       LOGIN MODAL
+       ============================ -->
+  <div class="modal-overlay" id="loginModal">
+    <div class="modal" style="max-width: 400px;">
+      <div class="modal-header">
+        <h3><i class="fas fa-lock" style="color: var(--gold-start); margin-left: 8px;"></i> تسجيل الدخول</h3>
+        <button class="modal-close" onclick="closeModal('loginModal')">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="loginPassword">كلمة المرور</label>
+          <input type="password" id="loginPassword" placeholder="أدخل كلمة المرور" autocomplete="off">
+        </div>
+        <button class="btn-gold" style="width: 100%; margin-top: 8px;" onclick="handleLogin()">
+          <i class="fas fa-sign-in-alt"></i>
+          دخول
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================
+       ADD/EDIT FLAVOR MODAL
+       ============================ -->
+  <div class="modal-overlay" id="addFlavorModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 id="addModalTitle"><i class="fas fa-plus-circle" style="color: var(--gold-start); margin-left: 8px;"></i> إضافة نكهة جديدة</h3>
+        <button class="modal-close" onclick="closeModal('addFlavorModal')">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="flavorName">اسم النكهة *</label>
+          <input type="text" id="flavorName" placeholder="مثال: عنب مزدوج">
+        </div>
+
+        <div class="form-group">
+          <label for="flavorDesc">الوصف</label>
+          <textarea id="flavorDesc" placeholder="وصف مختصر للنكهة..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="flavorPrice">السعر (بالألف د.ع) *</label>
+          <input type="number" id="flavorPrice" placeholder="مثال: 25" min="0" step="0.5">
+        </div>
+
+        <div class="form-group">
+          <label for="flavorAvailable">التوفر</label>
+          <select id="flavorAvailable">
+            <option value="true">متوفر</option>
+            <option value="false">غير متوفر</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label><i class="fas fa-camera" style="color:var(--gold-start);margin-left:6px;"></i>صورة النكهة</label>
+          <div class="image-upload-area" id="imageUploadArea">
+            <div class="image-upload-placeholder" id="imagePlaceholder">
+              <i class="fas fa-cloud-upload-alt"></i>
+              <p>اضغط هنا أو اسحب صورة</p>
+              <span>أو أدخل رابط بالأسفل</span>
+            </div>
+            <img id="imagePreview" class="image-upload-preview" style="display:none;" alt="معاينة">
+            <button type="button" class="image-remove-btn" id="imageRemoveBtn" style="display:none;" onclick="removeImage()">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+          <input type="file" id="flavorImageFile" accept="image/*" style="display:none;">
+          <div style="margin-top:10px;display:flex;align-items:center;gap:8px;">
+            <span style="color:var(--text-secondary);font-size:0.85rem;white-space:nowrap;">أو رابط:</span>
+            <input type="url" id="flavorImageUrl" placeholder="https://example.com/image.jpg" dir="ltr" style="flex:1;padding:10px 14px;border:1px solid var(--border-color);border-radius:10px;background:rgba(0,0,0,0.3);color:#fff;font-family:inherit;font-size:0.9rem;">
+          </div>
+          <div id="uploadProgress" style="display:none;margin-top:10px;">
+            <div style="display:flex;justify-content:space-between;margin-bottom:5px;">
+              <span style="color:var(--text-secondary);font-size:0.85rem;">جاري رفع الصورة...</span>
+              <span id="uploadPercent" style="color:var(--gold-start);font-size:0.85rem;">0%</span>
+            </div>
+            <div style="width:100%;height:6px;background:rgba(255,255,255,0.08);border-radius:3px;overflow:hidden;">
+              <div id="uploadBar" style="width:0%;height:100%;background:linear-gradient(90deg,var(--gold-start),var(--gold-end));border-radius:3px;transition:width 0.3s;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-outline" onclick="closeModal('addFlavorModal')">إلغاء</button>
+        <button class="btn-gold" id="flavorSubmitBtn" onclick="saveFlavor()">
+          <i class="fas fa-save"></i>
+          إضافة النكهة
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================
+       SCROLL TO TOP BUTTON
+       ============================ -->
+  <button class="scroll-top" aria-label="العودة للأعلى">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <!-- ============================
+       SCRIPTS
+       ============================ -->
+  <!-- Firebase Compat SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-storage-compat.js"></script>
+
+  <!-- App Script -->
+  <script src="app.js"></script>
+
+</body>
+</html>

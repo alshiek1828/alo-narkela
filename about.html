@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!-- SEO Meta Tags -->
+  <title>من نحن | الو نركيلة - أفضل نكهات الاراكيل في العراق</title>
+  <meta name="description" content="تعرف على الو نركيلة - متجر نكهات الاراكيل الأفضل في العراق. جودة عالية، أسعار منافسة، وتوصيل سريع لجميع المحافظات.">
+  <meta name="keywords" content="الو نركيلة, من نحن, نكهات اراكيل, معسل, العراق, hookah, shisha">
+  <meta name="author" content="الو نركيلة">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://allo-narkila.netlify.app/about.html">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="من نحن | الو نركيلة">
+  <meta property="og:description" content="تعرف على الو نركيلة - وجهتك الأولى لنكهات الاراكيل الفاخرة في العراق.">
+  <meta property="og:url" content="https://allo-narkila.netlify.app/about.html">
+  <meta property="og:site_name" content="الو نركيلة">
+  <meta property="og:locale" content="ar_IQ">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="من نحن | الو نركيلة">
+  <meta name="twitter:description" content="تعرف على الو نركيلة - وجهتك الأولى لنكهات الاراكيل الفاخرة في العراق.">
+
+  <!-- PWA Meta Tags -->
+  <meta name="theme-color" content="#0a0a0f">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="الو نركيلة">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="generated-icon.png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* Page Header Banner */
+    .page-header {
+      padding: 140px 0 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 50% at 50% 30%, rgba(201, 168, 76, 0.1) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 40% at 80% 60%, rgba(212, 162, 78, 0.05) 0%, transparent 60%),
+        linear-gradient(180deg, #0a0a0f 0%, #0d0d16 100%);
+    }
+
+    .page-header-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .page-header h1 {
+      font-size: 3rem;
+      font-weight: 900;
+      background: var(--gold-text);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 16px;
+      animation: fadeInUp 0.8s ease forwards;
+      opacity: 0;
+    }
+
+    .page-header p {
+      font-size: 1.15rem;
+      color: var(--text-secondary);
+      max-width: 550px;
+      margin: 0 auto;
+      line-height: 1.8;
+      animation: fadeInUp 0.8s ease forwards 0.2s;
+      opacity: 0;
+    }
+
+    .page-header .title-decoration {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 20px;
+      animation: fadeInUp 0.8s ease forwards 0.3s;
+      opacity: 0;
+    }
+
+    .page-header .title-decoration .line {
+      width: 50px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold-start));
+    }
+
+    .page-header .title-decoration .line:last-child {
+      background: linear-gradient(90deg, var(--gold-start), transparent);
+    }
+
+    .page-header .title-decoration .diamond {
+      width: 8px;
+      height: 8px;
+      background: var(--gold);
+      transform: rotate(45deg);
+      flex-shrink: 0;
+    }
+
+    /* About Hero Section */
+    .about-hero-section {
+      padding: 40px 0 80px;
+      position: relative;
+    }
+
+    .about-hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .about-hero-text h2 {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 20px;
+      line-height: 1.4;
+    }
+
+    .about-hero-text h2 span {
+      background: var(--gold-text);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .about-hero-text p {
+      color: var(--text-secondary);
+      font-size: 1.05rem;
+      line-height: 2;
+      margin-bottom: 16px;
+    }
+
+    .about-hero-text .about-highlight {
+      background: var(--bg-glass-strong);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 20px 24px;
+      margin-top: 24px;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .about-highlight i {
+      color: var(--gold-start);
+      font-size: 1.3rem;
+      margin-top: 3px;
+      flex-shrink: 0;
+    }
+
+    .about-highlight p {
+      color: var(--text-primary);
+      font-size: 0.95rem;
+      line-height: 1.8;
+      margin-bottom: 0;
+    }
+
+    .about-hero-visual {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .about-visual-card {
+      width: 100%;
+      max-width: 400px;
+      background: var(--bg-glass);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: 40px;
+      text-align: center;
+      position: relative;
+    }
+
+    .about-visual-card::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: var(--radius-xl);
+      background: var(--gold);
+      opacity: 0.15;
+      z-index: -1;
+      filter: blur(20px);
+    }
+
+    .about-visual-icon {
+      width: 90px;
+      height: 90px;
+      margin: 0 auto 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(201, 168, 76, 0.1);
+      border: 2px solid var(--border-gold);
+      font-size: 2.2rem;
+      color: var(--gold-start);
+      animation: pulse-gold 3s ease-in-out infinite;
+    }
+
+    .about-visual-card h3 {
+      font-size: 1.3rem;
+      font-weight: 800;
+      background: var(--gold-text);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 10px;
+    }
+
+    .about-visual-card p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    .about-visual-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 28px;
+    }
+
+    .about-visual-stat {
+      background: var(--bg-glass);
+      border-radius: var(--radius-md);
+      padding: 16px 10px;
+    }
+
+    .about-visual-stat .num {
+      font-size: 1.4rem;
+      font-weight: 900;
+      background: var(--gold-text);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .about-visual-stat .label {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      margin-top: 2px;
+    }
+
+    @media (max-width: 900px) {
+      .about-hero-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .about-hero-visual {
+        order: -1;
+      }
+
+      .about-visual-card {
+        max-width: 340px;
+        padding: 30px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page-header {
+        padding: 120px 0 40px;
+      }
+
+      .page-header h1 {
+        font-size: 2rem;
+      }
+    }
+
+    /* Why Choose Us Section */
+    .why-choose-section {
+      padding: 80px 0;
+      position: relative;
+    }
+
+    .why-choose-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border-gold), transparent);
+    }
+
+    .why-features-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-top: 50px;
+    }
+
+    .why-feature-card {
+      background: var(--bg-glass);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px 22px;
+      text-align: center;
+      transition: all var(--transition-normal);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .why-feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--gold);
+      opacity: 0;
+      transition: opacity var(--transition-normal);
+    }
+
+    .why-feature-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--border-gold);
+      box-shadow: var(--gold-glow);
+    }
+
+    .why-feature-card:hover::before {
+      opacity: 1;
+    }
+
+    .why-feature-card .why-icon {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--radius-lg);
+      background: rgba(201, 168, 76, 0.1);
+      border: 1px solid rgba(201, 168, 76, 0.15);
+      color: var(--gold-start);
+      font-size: 1.6rem;
+      transition: all var(--transition-normal);
+    }
+
+    .why-feature-card:hover .why-icon {
+      background: rgba(201, 168, 76, 0.18);
+      transform: scale(1.05);
+    }
+
+    .why-feature-card h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 10px;
+    }
+
+    .why-feature-card p {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    @media (max-width: 1024px) {
+      .why-features-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .why-features-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+    }
+
+    /* Stats Section Override */
+    .about-stats-section {
+      padding: 80px 0;
+      position: relative;
+    }
+
+    .about-stats-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border-gold), transparent);
+    }
+
+    .about-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .about-stat-card {
+      background: var(--bg-glass);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px 20px;
+      text-align: center;
+      transition: all var(--transition-normal);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--gold);
+      opacity: 0;
+      transition: opacity var(--transition-normal);
+    }
+
+    .about-stat-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--border-gold);
+      box-shadow: var(--gold-glow);
+    }
+
+    .about-stat-card:hover::before {
+      opacity: 1;
+    }
+
+    .about-stat-card .stat-icon {
+      width: 56px;
+      height: 56px;
+      margin: 0 auto 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--radius-md);
+      background: rgba(201, 168, 76, 0.1);
+      color: var(--gold-start);
+      font-size: 1.3rem;
+    }
+
+    .about-stat-card .stat-number {
+      font-size: 2.2rem;
+      font-weight: 900;
+      background: var(--gold-text);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 4px;
+    }
+
+    .about-stat-card .stat-label {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    @media (max-width: 1024px) {
+      .about-stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .about-stats-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+
+      .about-stat-card {
+        padding: 24px 14px;
+      }
+
+      .about-stat-card .stat-number {
+        font-size: 1.6rem;
+      }
+    }
+
+    /* Testimonials Section */
+    .testimonials-section {
+      padding: 80px 0;
+      position: relative;
+    }
+
+    .testimonials-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border-gold), transparent);
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 50px;
+    }
+
+    .testimonial-card {
+      background: var(--bg-glass);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: 32px 26px;
+      transition: all var(--transition-normal);
+      position: relative;
+    }
+
+    .testimonial-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--border-gold);
+    }
+
+    .testimonial-card .quote-icon {
+      font-size: 1.8rem;
+      color: var(--gold-start);
+      opacity: 0.3;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .testimonial-card .review-text {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.9;
+      margin-bottom: 24px;
+    }
+
+    .testimonial-card .reviewer {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      border-top: 1px solid var(--border-light);
+      padding-top: 20px;
+    }
+
+    .reviewer-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: rgba(201, 168, 76, 0.1);
+      border: 2px solid var(--border-gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--gold-start);
+      flex-shrink: 0;
+    }
+
+    .reviewer-info h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 2px;
+    }
+
+    .reviewer-info .reviewer-location {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .reviewer-info .stars {
+      margin-top: 4px;
+      color: var(--gold-start);
+      font-size: 0.8rem;
+      display: flex;
+      gap: 2px;
+    }
+
+    @media (max-width: 1024px) {
+      .testimonials-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .testimonials-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+
+      .testimonial-card {
+        padding: 24px 20px;
+      }
+    }
+
+    /* CTA Section */
+    .about-cta-section {
+      padding: 60px 0 80px;
+    }
+
+    .about-cta-box {
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 50%, rgba(201, 168, 76, 0.08) 0%, transparent 70%);
+      border: 1px solid var(--border-gold);
+      border-radius: var(--radius-xl);
+      padding: 50px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-cta-box::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(201, 168, 76, 0.04) 0%, transparent 50%);
+      animation: gradientShift 8s ease infinite;
+      background-size: 200% 200%;
+    }
+
+    .about-cta-box h2 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      background: var(--gold-text);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 14px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .about-cta-box p {
+      color: var(--text-secondary);
+      font-size: 1.05rem;
+      line-height: 1.8;
+      max-width: 500px;
+      margin: 0 auto 28px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .about-cta-box .cta-buttons {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 2;
+    }
+
+    @media (max-width: 600px) {
+      .about-cta-box {
+        padding: 36px 20px;
+      }
+
+      .about-cta-box h2 {
+        font-size: 1.4rem;
+      }
+
+      .about-cta-box .cta-buttons {
+        flex-direction: column;
+      }
+
+      .about-cta-box .cta-buttons a {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================
+       LOADING SPINNER
+       ============================ -->
+  <div class="loading-spinner" id="loadingSpinner">
+    <div class="spinner"></div>
+    <p>جاري تحميل الو نركيلة...</p>
+  </div>
+
+  <!-- ============================
+       TOAST CONTAINER
+       ============================ -->
+  <div class="toast-container"></div>
+
+  <!-- ============================
+       NAVIGATION
+       ============================ -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar-logo" onclick="handleLogoClick()" title="الو نركيلة">
+      <img src="generated-icon.png" alt="الو نركيلة">
+      <span>الو نركيلة</span>
+    </div>
+
+    <div class="navbar-links">
+      <a href="index.html">الرئيسية</a>
+      <a href="menu.html">قائمة النكهات</a>
+      <a href="about.html" class="active">من نحن</a>
+      <a href="index.html#contact">تواصل معنا</a>
+    </div>
+
+    <button class="hamburger" id="hamburgerBtn" aria-label="فتح القائمة">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- ============================
+       SIDE PANEL (Mobile)
+       ============================ -->
+  <div class="side-panel-overlay" id="sidePanelOverlay"></div>
+  <div class="side-panel" id="sidePanel">
+    <div class="side-panel-header">
+      <span class="logo-text">الو نركيلة</span>
+      <button class="side-panel-close" id="sidePanelClose" aria-label="إغلاق القائمة">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+
+    <div class="side-panel-nav">
+      <a href="index.html"><i class="fas fa-home"></i> الرئيسية</a>
+      <a href="menu.html"><i class="fas fa-fire"></i> قائمة النكهات</a>
+      <a href="about.html" class="active"><i class="fas fa-info-circle"></i> من نحن</a>
+      <a href="index.html#contact"><i class="fas fa-envelope"></i> تواصل معنا</a>
+    </div>
+
+    <div class="side-panel-social">
+      <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+    </div>
+  </div>
+
+  <!-- ============================
+       PAGE HEADER BANNER
+       ============================ -->
+  <section class="page-header">
+    <div class="page-header-content">
+      <h1>من نحن</h1>
+      <p>تعرف على قصة الو نركيلة ورسالتنا في تقديم أفضل نكهات الاراكيل</p>
+      <div class="title-decoration">
+        <span class="line"></span>
+        <span class="diamond"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       ABOUT SECTION
+       ============================ -->
+  <section class="about-hero-section">
+    <div class="container">
+      <div class="about-hero-grid">
+        <div class="about-hero-text animate-fade-up">
+          <h2>وجهتك الأولى لنكهات <span>الاراكيل الفاخرة</span> في العراق</h2>
+          <p>
+            مرحباً بكم في <strong style="color: var(--gold-start);">الو نركيلة</strong> — متجركم الموثوق لأجود أنواع نكهات ومعسل الاراكيل في العراق. بدأنا رحلتنا من حبنا الشديد لتجربة النركيلة المثالية، وإيماننا بأن كل عشاق الاراكيل في العراق يستحقون الوصول إلى نكهات عالمية المستوى بأسعار مناسبة.
+          </p>
+          <p>
+            نحن نختار نكهاتنا بعناية فائقة من أفضل المصنّعين العالميين، ونحرص على أن تكون كل علبة نصل إلى يدكم بحالة مثالية وبضمان الجودة الكاملة. فريقنا يعمل بشغف لتقديم تجربة تسوق فريدة تجمع بين السهولة والسرعة والموثوقية.
+          </p>
+          <p>
+            سواء كنت من عشاق النكهات الفواكه المنعشة، أو تفضل النكهات الكلاسيكية العميقة، أو تبحث عن تجارب جديدة ومميزة — عندنا ستجد ما يلبي ذوقك ويُسعدك في كل مرة.
+          </p>
+
+          <div class="about-highlight">
+            <i class="fas fa-quote-right"></i>
+            <p>
+              هدفنا في الو نركيلة هو أن نكون الخيار الأول لكل محب للنركيلة في العراق، من خلال تقديم منتجات أصلية ١٠٠٪ بأسعار لا تُقارن وخدمة توصيل تصل إلى جميع المحافظات العراقية.
+            </p>
+          </div>
+        </div>
+
+        <div class="about-hero-visual animate-fade-up" style="transition-delay: 0.15s;">
+          <div class="about-visual-card">
+            <div class="about-visual-icon">
+              <i class="fas fa-crown"></i>
+            </div>
+            <h3>الو نركيلة</h3>
+            <p>بدايتنا كانت شغفاً، وأصبحنا الخيار الأول</p>
+
+            <div class="about-visual-stats">
+              <div class="about-visual-stat">
+                <div class="num">٤.٩</div>
+                <div class="label">تقييم العملاء</div>
+              </div>
+              <div class="about-visual-stat">
+                <div class="num">١٠٠%</div>
+                <div class="label">منتجات أصلية</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       WHY CHOOSE US SECTION
+       ============================ -->
+  <section class="why-choose-section">
+    <div class="container">
+      <div class="section-title animate-fade-up">
+        <h2>لماذا تختارنا؟</h2>
+        <p>أربعة أسباب تجعلنا الخيار الأفضل لنكهات الاراكيل</p>
+        <div class="title-decoration">
+          <span class="line"></span>
+          <span class="diamond"></span>
+          <span class="line"></span>
+        </div>
+      </div>
+
+      <div class="why-features-grid">
+        <div class="why-feature-card animate-fade-up">
+          <div class="why-icon">
+            <i class="fas fa-gem"></i>
+          </div>
+          <h3>جودة عالية</h3>
+          <p>نوفر لك نكهات مستوردة من أرقى العلامات العالمية، مختارة بعناية لضمان أفضل تجربة نركيلة</p>
+        </div>
+
+        <div class="why-feature-card animate-fade-up" style="transition-delay: 0.1s;">
+          <div class="why-icon">
+            <i class="fas fa-tags"></i>
+          </div>
+          <h3>أسعار منافسة</h3>
+          <p>نقدم أفضل الأسعار في السوق العراقي دون المساومة على الجودة، لأننا نؤمن بأن الجميع يستحق الأفضل</p>
+        </div>
+
+        <div class="why-feature-card animate-fade-up" style="transition-delay: 0.2s;">
+          <div class="why-icon">
+            <i class="fas fa-shipping-fast"></i>
+          </div>
+          <h3>توصيل سريع</h3>
+          <p>خدمة توصيل سريعة وآمنة تصل إلى جميع المحافظات العراقية مع تغليف محكم يضمن سلامة المنتج</p>
+        </div>
+
+        <div class="why-feature-card animate-fade-up" style="transition-delay: 0.3s;">
+          <div class="why-icon">
+            <i class="fas fa-headset"></i>
+          </div>
+          <h3>دعم متواصل</h3>
+          <p>فريق خدمة العملاء متاح على مدار الساعة عبر واتساب للإجابة على استفساراتك ومساعدتك في أي وقت</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       STATS SECTION
+       ============================ -->
+  <section class="about-stats-section">
+    <div class="container">
+      <div class="section-title animate-fade-up">
+        <h2>أرقامنا تتحدث</h2>
+        <p>إنجازاتنا وثقة عملائنا هي أعظم شهادة لنا</p>
+        <div class="title-decoration">
+          <span class="line"></span>
+          <span class="diamond"></span>
+          <span class="line"></span>
+        </div>
+      </div>
+
+      <div class="about-stats-grid">
+        <div class="about-stat-card animate-fade-up">
+          <div class="stat-icon">
+            <i class="fas fa-layer-group"></i>
+          </div>
+          <div class="stat-number" id="statTotalFlavors">0</div>
+          <div class="stat-label">عدد النكهات</div>
+        </div>
+
+        <div class="about-stat-card animate-fade-up" style="transition-delay: 0.1s;">
+          <div class="stat-icon">
+            <i class="fas fa-smile"></i>
+          </div>
+          <div class="stat-number" id="statAvailable">0</div>
+          <div class="stat-label">العملاء السعداء</div>
+        </div>
+
+        <div class="about-stat-card animate-fade-up" style="transition-delay: 0.2s;">
+          <div class="stat-icon">
+            <i class="fas fa-shopping-cart"></i>
+          </div>
+          <div class="stat-number" id="statTotalOrders">0</div>
+          <div class="stat-label">الطلبات</div>
+        </div>
+
+        <div class="about-stat-card animate-fade-up" style="transition-delay: 0.3s;">
+          <div class="stat-icon">
+            <i class="fas fa-award"></i>
+          </div>
+          <div class="stat-number">٣</div>
+          <div class="stat-label">سنوات الخبرة</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       TESTIMONIALS SECTION
+       ============================ -->
+  <section class="testimonials-section">
+    <div class="container">
+      <div class="section-title animate-fade-up">
+        <h2>ماذا يقول عملاؤنا</h2>
+        <p>آراء حقيقية من عملاء سعداء جربوا نكهاتنا</p>
+        <div class="title-decoration">
+          <span class="line"></span>
+          <span class="diamond"></span>
+          <span class="line"></span>
+        </div>
+      </div>
+
+      <div class="testimonials-grid">
+        <div class="testimonial-card animate-fade-up">
+          <i class="fas fa-quote-right quote-icon"></i>
+          <p class="review-text">
+            من أفضل المتاجر اللي تعاملت معها. النكهات أصلية والأسعار معقولة جداً مقارنة بالسوق. التوصيل كان سريع والتغليف ممتاز. أنصح الجميع يجربون عندهم!
+          </p>
+          <div class="reviewer">
+            <div class="reviewer-avatar">ع</div>
+            <div class="reviewer-info">
+              <h4>علي الحسيني</h4>
+              <div class="reviewer-location"><i class="fas fa-map-marker-alt"></i> بغداد</div>
+              <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card animate-fade-up" style="transition-delay: 0.1s;">
+          <i class="fas fa-quote-right quote-icon"></i>
+          <p class="review-text">
+            طلبت أكثر من مرة ودائماً النتيجة ممتازة. التشكيلة واسعة وما تخلص نكهات جديدة. خدمة العملاء عبر واتساب سريعة ومتعاونين. فعلاً تجربة مميزة!
+          </p>
+          <div class="reviewer">
+            <div class="reviewer-avatar">م</div>
+            <div class="reviewer-info">
+              <h4>محمد أحمد</h4>
+              <div class="reviewer-location"><i class="fas fa-map-marker-alt"></i> البصرة</div>
+              <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card animate-fade-up" style="transition-delay: 0.2s;">
+          <i class="fas fa-quote-right quote-icon"></i>
+          <p class="review-text">
+            صراحة ما كنت أتوقع هالمستوى من الخدمة. النكهات طازجة وأصلية والسعر يليق بالجودة. سويت طلب واحد وصار عميل دائم. شكراً الو نركيلة!
+          </p>
+          <div class="reviewer">
+            <div class="reviewer-avatar">ح</div>
+            <div class="reviewer-info">
+              <h4>حسين كريم</h4>
+              <div class="reviewer-location"><i class="fas fa-map-marker-alt"></i> أربيل</div>
+              <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       CTA SECTION
+       ============================ -->
+  <section class="about-cta-section">
+    <div class="container">
+      <div class="about-cta-box animate-fade-up">
+        <h2>جاهز لتجربة نكهة جديدة؟</h2>
+        <p>تصفح قائمتنا الواسعة واطلب نكهتك المفضلة الآن عبر واتساب مع توصيل سريع لباب منزلك</p>
+        <div class="cta-buttons">
+          <a href="menu.html" class="btn-gold">
+            <i class="fas fa-fire"></i>
+            تصفح النكهات
+          </a>
+          <a href="https://wa.me/9647702604040" target="_blank" class="btn-whatsapp" style="padding: 14px 32px; font-size: 1rem;">
+            <i class="fab fa-whatsapp"></i>
+            تواصل عبر واتساب
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       FOOTER
+       ============================ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <img src="generated-icon.png" alt="الو نركيلة">
+            <span>الو نركيلة</span>
+          </div>
+          <p>
+            وجهتك الأولى لأفضل نكهات الاراكيل في العراق. جودة عالية وأسعار مناسبة مع توصيل سريع.
+          </p>
+          <div class="footer-social">
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-column">
+          <h4>روابط سريعة</h4>
+          <ul>
+            <li><a href="index.html"><i class="fas fa-chevron-left"></i> الرئيسية</a></li>
+            <li><a href="menu.html"><i class="fas fa-chevron-left"></i> قائمة النكهات</a></li>
+            <li><a href="about.html"><i class="fas fa-chevron-left"></i> من نحن</a></li>
+            <li><a href="index.html#contact"><i class="fas fa-chevron-left"></i> تواصل معنا</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>معلومات التواصل</h4>
+          <ul>
+            <li><a href="https://wa.me/9647702604040" target="_blank"><i class="fab fa-whatsapp"></i> 9647702604040+</a></li>
+            <li><a href="#"><i class="fas fa-map-marker-alt"></i> العراق</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>تابعنا</h4>
+          <ul>
+            <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+            <li><a href="#"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+            <li><a href="#"><i class="fab fa-tiktok"></i> TikTok</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2025 <a href="#">الو نركيلة</a>. جميع الحقوق محفوظة.</p>
+        <p>صُمم بـ <span style="color: var(--danger);">❤</span> في العراق</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================
+       SCROLL TO TOP BUTTON
+       ============================ -->
+  <button class="scroll-top" aria-label="العودة للأعلى">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <!-- ============================
+       SCRIPTS
+       ============================ -->
+  <!-- Firebase Compat SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+
+  <!-- App Script -->
+  <script src="app.js"></script>
+
+</body>
+</html>

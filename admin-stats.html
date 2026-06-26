@@ -1,0 +1,1325 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!-- SEO Meta Tags -->
+  <title>لوحة إحصائيات المدير | الو نركيلة</title>
+  <meta name="description" content="لوحة تحكم المدير - إحصائيات الطلبات والزوار لنكهات الاراكيل">
+  <meta name="robots" content="noindex, nofollow">
+
+  <!-- PWA Meta Tags -->
+  <meta name="theme-color" content="#0a0a0f">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="generated-icon.png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* Dashboard-specific styles */
+    .dashboard-page {
+      min-height: 100vh;
+      padding-top: calc(var(--navbar-height) + 30px);
+      padding-bottom: 60px;
+    }
+
+    .dash-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 30px;
+    }
+
+    .dash-header h2 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .dash-header h2 i {
+      color: var(--gold-start);
+    }
+
+    .dash-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .dash-controls select {
+      padding: 10px 36px 10px 14px;
+      background: var(--bg-glass);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-full);
+      color: var(--text-primary);
+      font-size: 0.88rem;
+      font-family: var(--font-family);
+      cursor: pointer;
+      appearance: none;
+      -webkit-appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%238a8a9a' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: left 12px center;
+      transition: all var(--transition-normal);
+    }
+
+    .dash-controls select:focus {
+      border-color: var(--border-gold);
+      box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.1);
+      outline: none;
+    }
+
+    .dash-controls select option {
+      background: var(--bg-card);
+      color: var(--text-primary);
+    }
+
+    .btn-refresh {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 22px;
+      background: var(--bg-glass-strong);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-full);
+      color: var(--gold-start);
+      font-size: 0.88rem;
+      font-weight: 600;
+      font-family: var(--font-family);
+      cursor: pointer;
+      transition: all var(--transition-normal);
+      white-space: nowrap;
+    }
+
+    .btn-refresh:hover {
+      background: rgba(201, 168, 76, 0.1);
+      border-color: var(--border-gold);
+    }
+
+    .btn-refresh.spinning i {
+      animation: spin 0.8s linear infinite;
+    }
+
+    .btn-csv {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 22px;
+      background: rgba(46, 204, 113, 0.1);
+      border: 1px solid rgba(46, 204, 113, 0.25);
+      border-radius: var(--radius-full);
+      color: var(--success);
+      font-size: 0.88rem;
+      font-weight: 600;
+      font-family: var(--font-family);
+      cursor: pointer;
+      transition: all var(--transition-normal);
+      white-space: nowrap;
+    }
+
+    .btn-csv:hover {
+      background: rgba(46, 204, 113, 0.2);
+      transform: translateY(-1px);
+    }
+
+    /* Summary Cards */
+    .dash-summary {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .dash-summary-card {
+      background: var(--bg-glass);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px 20px;
+      text-align: center;
+      transition: all var(--transition-normal);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .dash-summary-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--gold);
+      opacity: 0;
+      transition: opacity var(--transition-normal);
+    }
+
+    .dash-summary-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--border-gold);
+      box-shadow: var(--shadow-gold);
+    }
+
+    .dash-summary-card:hover::before {
+      opacity: 1;
+    }
+
+    .dash-summary-card .summary-icon {
+      width: 50px;
+      height: 50px;
+      margin: 0 auto 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--radius-md);
+      background: rgba(201, 168, 76, 0.1);
+      color: var(--gold-start);
+      font-size: 1.2rem;
+    }
+
+    .dash-summary-card .summary-value {
+      font-size: 2rem;
+      font-weight: 900;
+      background: var(--gold-text);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 4px;
+    }
+
+    .dash-summary-card .summary-label {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    /* Tables Section */
+    .dash-tables-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    .dash-table-section {
+      background: var(--bg-glass);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .dash-table-section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--border);
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .dash-table-section-header h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--gold-start);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .dash-table-section-header h3 i {
+      font-size: 1rem;
+    }
+
+    .dash-table-toolbar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .dash-table-toolbar input {
+      padding: 8px 34px 8px 12px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-full);
+      color: var(--text-primary);
+      font-size: 0.82rem;
+      font-family: var(--font-family);
+      width: 160px;
+      transition: all var(--transition-normal);
+      position: relative;
+    }
+
+    .dash-table-toolbar input:focus {
+      border-color: var(--border-gold);
+      box-shadow: 0 0 0 2px rgba(201, 168, 76, 0.08);
+      outline: none;
+    }
+
+    .dash-table-toolbar input::placeholder {
+      color: var(--text-muted);
+    }
+
+    .dash-table-toolbar select {
+      padding: 8px 30px 8px 10px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-full);
+      color: var(--text-primary);
+      font-size: 0.82rem;
+      font-family: var(--font-family);
+      cursor: pointer;
+      appearance: none;
+      -webkit-appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'%3E%3Cpath fill='%238a8a9a' d='M5 7L0 2h10z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: left 8px center;
+      transition: all var(--transition-normal);
+    }
+
+    .dash-table-toolbar select:focus {
+      border-color: var(--border-gold);
+      outline: none;
+    }
+
+    .dash-table-toolbar select option {
+      background: var(--bg-card);
+      color: var(--text-primary);
+    }
+
+    .btn-csv-sm {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 7px 14px;
+      background: rgba(46, 204, 113, 0.1);
+      border: 1px solid rgba(46, 204, 113, 0.2);
+      border-radius: var(--radius-full);
+      color: var(--success);
+      font-size: 0.78rem;
+      font-weight: 600;
+      font-family: var(--font-family);
+      cursor: pointer;
+      transition: all var(--transition-normal);
+      white-space: nowrap;
+    }
+
+    .btn-csv-sm:hover {
+      background: rgba(46, 204, 113, 0.2);
+    }
+
+    .dash-table-body {
+      overflow-x: auto;
+      max-height: 420px;
+      overflow-y: auto;
+    }
+
+    .dash-table-body::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .dash-table-body::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .dash-table-body::-webkit-scrollbar-thumb {
+      background: rgba(201, 168, 76, 0.2);
+      border-radius: 10px;
+    }
+
+    .dash-table-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 20px;
+      border-top: 1px solid var(--border);
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .dash-table-footer .page-info {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pagination-btns {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pagination-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      padding: 6px 14px;
+      background: var(--bg-glass-strong);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-sm);
+      color: var(--text-secondary);
+      font-size: 0.8rem;
+      font-weight: 600;
+      font-family: var(--font-family);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .pagination-btn:hover:not(:disabled) {
+      background: rgba(201, 168, 76, 0.1);
+      color: var(--gold-start);
+      border-color: var(--border-gold);
+    }
+
+    .pagination-btn:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+
+    /* Charts Section */
+    .dash-charts-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    .dash-chart-card {
+      background: var(--bg-glass);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+    }
+
+    .dash-chart-card h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--gold-start);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .dash-chart-card h3 i {
+      font-size: 1rem;
+    }
+
+    .chart-container {
+      position: relative;
+      width: 100%;
+      max-height: 350px;
+    }
+
+    /* Responsive */
+    @media (max-width: 1200px) {
+      .dash-tables-grid {
+        grid-template-columns: 1fr;
+      }
+      .dash-charts-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 1024px) {
+      .dash-summary {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .dash-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .dash-controls {
+        width: 100%;
+      }
+      .dash-table-section-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .dash-table-toolbar {
+        width: 100%;
+      }
+      .dash-table-toolbar input {
+        flex: 1;
+        min-width: 120px;
+      }
+      .dash-table-footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .dash-summary {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .dash-summary-card {
+        padding: 18px 14px;
+      }
+      .dash-summary-card .summary-value {
+        font-size: 1.5rem;
+      }
+      .dash-header h2 {
+        font-size: 1.4rem;
+      }
+      .dash-chart-card {
+        padding: 18px 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- LOADING SPINNER -->
+  <div class="loading-spinner" id="loadingSpinner">
+    <div class="spinner"></div>
+    <p>جاري تحميل لوحة الإحصائيات...</p>
+  </div>
+
+  <!-- TOAST CONTAINER -->
+  <div class="toast-container"></div>
+
+  <!-- NAVIGATION -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar-logo" onclick="window.location.href='index.html'" title="الو نركيلة">
+      <img src="generated-icon.png" alt="الو نركيلة">
+      <span>الو نركيلة</span>
+    </div>
+
+    <div class="navbar-links">
+      <a href="index.html">الرئيسية</a>
+      <a href="index.html#menu">قائمة النكهات</a>
+      <a href="stats.html">الإحصائيات</a>
+      <a href="admin-stats.html" class="active">لوحة التحكم</a>
+    </div>
+
+    <button class="hamburger" id="hamburgerBtn" aria-label="فتح القائمة">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- SIDE PANEL (Mobile) -->
+  <div class="side-panel-overlay" id="sidePanelOverlay"></div>
+  <div class="side-panel" id="sidePanel">
+    <div class="side-panel-header">
+      <span class="logo-text">الو نركيلة</span>
+      <button class="side-panel-close" id="sidePanelClose" aria-label="إغلاق القائمة">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+
+    <div class="side-panel-nav">
+      <a href="index.html"><i class="fas fa-home"></i> الرئيسية</a>
+      <a href="index.html#menu"><i class="fas fa-fire"></i> قائمة النكهات</a>
+      <a href="stats.html"><i class="fas fa-chart-bar"></i> الإحصائيات</a>
+      <a href="admin-stats.html" class="active"><i class="fas fa-cog"></i> لوحة التحكم</a>
+    </div>
+
+    <div class="side-panel-social">
+      <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+    </div>
+  </div>
+
+  <!-- DASHBOARD CONTENT -->
+  <main class="dashboard-page page-transition">
+    <div class="container">
+
+      <!-- Dashboard Header -->
+      <div class="dash-header">
+        <h2><i class="fas fa-chart-line"></i> لوحة إحصائيات المدير</h2>
+        <div class="dash-controls">
+          <button class="btn-refresh" id="refreshBtn" onclick="refreshData()">
+            <i class="fas fa-sync-alt"></i> تحديث
+          </button>
+          <select id="loadLimitSelect" onchange="changeLoadLimit(this.value)">
+            <option value="500">تحميل 500</option>
+            <option value="1000">تحميل 1000</option>
+            <option value="2000" selected>تحميل 2000</option>
+          </select>
+          <button class="btn-csv" onclick="exportAllCSV()">
+            <i class="fas fa-file-csv"></i> تصدير الكل CSV
+          </button>
+        </div>
+      </div>
+
+      <!-- Summary Cards -->
+      <div class="dash-summary">
+        <div class="dash-summary-card">
+          <div class="summary-icon"><i class="fas fa-shopping-cart"></i></div>
+          <div class="summary-value" id="totalOrders">0</div>
+          <div class="summary-label">إجمالي الطلبات</div>
+        </div>
+        <div class="dash-summary-card">
+          <div class="summary-icon"><i class="fas fa-eye"></i></div>
+          <div class="summary-value" id="totalVisitors">0</div>
+          <div class="summary-label">إجمالي الزوار</div>
+        </div>
+        <div class="dash-summary-card">
+          <div class="summary-icon"><i class="fas fa-layer-group"></i></div>
+          <div class="summary-value" id="totalFlavors">0</div>
+          <div class="summary-label">إجمالي النكهات</div>
+        </div>
+        <div class="dash-summary-card">
+          <div class="summary-icon"><i class="fas fa-crown"></i></div>
+          <div class="summary-value" id="topFlavor" style="font-size:1.05rem;">—</div>
+          <div class="summary-label">أشهر نكهة</div>
+        </div>
+      </div>
+
+      <!-- Tables Grid -->
+      <div class="dash-tables-grid">
+
+        <!-- Orders Table -->
+        <div class="dash-table-section">
+          <div class="dash-table-section-header">
+            <h3><i class="fas fa-shopping-bag"></i> جدول الطلبات</h3>
+            <div class="dash-table-toolbar">
+              <input type="text" id="ordersSearch" placeholder="بحث في الطلبات..." oninput="filterOrders()">
+              <select id="ordersPageSize" onchange="resetOrdersPagination()">
+                <option value="10">10</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+              </select>
+              <button class="btn-csv-sm" onclick="exportOrdersCSV()">
+                <i class="fas fa-download"></i> CSV
+              </button>
+            </div>
+          </div>
+          <div class="dash-table-body">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>النكهة</th>
+                  <th>الكمية</th>
+                  <th>IP</th>
+                  <th>البلد</th>
+                  <th>المتصفح</th>
+                  <th>الوقت</th>
+                </tr>
+              </thead>
+              <tbody id="ordersTableBody">
+                <tr><td colspan="6" class="text-center text-secondary" style="padding:40px;">جاري التحميل...</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="dash-table-footer">
+            <div class="page-info" id="ordersPageInfo">0 من 0</div>
+            <div class="pagination-btns">
+              <button class="pagination-btn" id="ordersPrevBtn" onclick="ordersPrevPage()" disabled>
+                <i class="fas fa-chevron-right"></i> السابق
+              </button>
+              <button class="pagination-btn" id="ordersNextBtn" onclick="ordersNextPage()">
+                التالي <i class="fas fa-chevron-left"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Visitors Table -->
+        <div class="dash-table-section">
+          <div class="dash-table-section-header">
+            <h3><i class="fas fa-users"></i> جدول الزوار</h3>
+            <div class="dash-table-toolbar">
+              <input type="text" id="visitorsSearch" placeholder="بحث في الزوار..." oninput="filterVisitors()">
+              <select id="visitorsPageSize" onchange="resetVisitorsPagination()">
+                <option value="10">10</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+              </select>
+              <button class="btn-csv-sm" onclick="exportVisitorsCSV()">
+                <i class="fas fa-download"></i> CSV
+              </button>
+            </div>
+          </div>
+          <div class="dash-table-body">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>IP</th>
+                  <th>البلد</th>
+                  <th>المتصفح</th>
+                  <th>الوقت</th>
+                </tr>
+              </thead>
+              <tbody id="visitorsTableBody">
+                <tr><td colspan="4" class="text-center text-secondary" style="padding:40px;">جاري التحميل...</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="dash-table-footer">
+            <div class="page-info" id="visitorsPageInfo">0 من 0</div>
+            <div class="pagination-btns">
+              <button class="pagination-btn" id="visitorsPrevBtn" onclick="visitorsPrevPage()" disabled>
+                <i class="fas fa-chevron-right"></i> السابق
+              </button>
+              <button class="pagination-btn" id="visitorsNextBtn" onclick="visitorsNextPage()">
+                التالي <i class="fas fa-chevron-left"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Charts Grid -->
+      <div class="dash-charts-grid">
+        <div class="dash-chart-card">
+          <h3><i class="fas fa-chart-bar"></i> الطلبات حسب النكهة</h3>
+          <div class="chart-container">
+            <canvas id="ordersChart"></canvas>
+          </div>
+        </div>
+        <div class="dash-chart-card">
+          <h3><i class="fas fa-chart-pie"></i> الزوار حسب البلد</h3>
+          <div class="chart-container">
+            <canvas id="visitorsChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <img src="generated-icon.png" alt="الو نركيلة">
+            <span>الو نركيلة</span>
+          </div>
+          <p>
+            وجهتك الأولى لأفضل نكهات الاراكيل في العراق. جودة عالية وأسعار مناسبة مع توصيل سريع.
+          </p>
+          <div class="footer-social">
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-column">
+          <h4>روابط سريعة</h4>
+          <ul>
+            <li><a href="index.html"><i class="fas fa-chevron-left"></i> الرئيسية</a></li>
+            <li><a href="index.html#menu"><i class="fas fa-chevron-left"></i> قائمة النكهات</a></li>
+            <li><a href="stats.html"><i class="fas fa-chevron-left"></i> الإحصائيات</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>معلومات التواصل</h4>
+          <ul>
+            <li><a href="https://wa.me/9647702604040" target="_blank"><i class="fab fa-whatsapp"></i> 9647702604040+</a></li>
+            <li><a href="#"><i class="fas fa-map-marker-alt"></i> العراق</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>تابعنا</h4>
+          <ul>
+            <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+            <li><a href="#"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+            <li><a href="#"><i class="fab fa-tiktok"></i> TikTok</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2025 <a href="#">الو نركيلة</a>. جميع الحقوق محفوظة.</p>
+        <p>صُمم بـ <span style="color: var(--danger);">❤</span> في العراق</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCROLL TO TOP -->
+  <button class="scroll-top" id="scrollTopBtn" aria-label="العودة للأعلى">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <!-- Firebase Compat SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+
+  <script>
+    // ===== Firebase Init =====
+    const firebaseConfig = {
+      apiKey: "AIzaSyDZt1RSz5d9wyn-C5S3kF8XVYjEldtSZss",
+      authDomain: "gmae-fae90.firebaseapp.com",
+      databaseURL: "https://gmae-fae90-default-rtdb.firebaseio.com",
+      projectId: "gmae-fae90",
+      storageBucket: "gmae-fae90.firebasestorage.app",
+      messagingSenderId: "768482186329",
+      appId: "1:768482186329:web:ae3b54ed2aaaf89d4e0d48",
+      measurementId: "G-KGQ0RQ33XS"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+
+    // ===== State =====
+    let allOrders = [];
+    let allVisitors = [];
+    let allFlavors = [];
+    let filteredOrders = [];
+    let filteredVisitors = [];
+    let ordersPage = 0;
+    let visitorsPage = 0;
+    let ordersChart = null;
+    let visitorsChart = null;
+    let loadLimit = 2000;
+
+    // Gold color palette for charts
+    const goldColors = [
+      'rgba(201, 168, 76, 0.85)',
+      'rgba(240, 208, 120, 0.85)',
+      'rgba(212, 162, 78, 0.85)',
+      'rgba(180, 150, 60, 0.85)',
+      'rgba(255, 215, 100, 0.85)',
+      'rgba(160, 130, 50, 0.85)',
+      'rgba(220, 185, 90, 0.85)',
+      'rgba(140, 115, 45, 0.85)',
+      'rgba(200, 170, 75, 0.85)',
+      'rgba(230, 200, 110, 0.85)'
+    ];
+    const goldBorders = [
+      'rgba(201, 168, 76, 1)',
+      'rgba(240, 208, 120, 1)',
+      'rgba(212, 162, 78, 1)',
+      'rgba(180, 150, 60, 1)',
+      'rgba(255, 215, 100, 1)',
+      'rgba(160, 130, 50, 1)',
+      'rgba(220, 185, 90, 1)',
+      'rgba(140, 115, 45, 1)',
+      'rgba(200, 170, 75, 1)',
+      'rgba(230, 200, 110, 1)'
+    ];
+
+    // ===== Data Loading =====
+    function loadData() {
+      const ordersRef = db.ref('orders').orderByKey().limitToLast(loadLimit);
+      const visitsRef = db.ref('visits').orderByKey().limitToLast(loadLimit);
+      const flavorsRef = db.ref('flavors');
+
+      ordersRef.on('value', (snap) => {
+        allOrders = [];
+        snap.forEach((child) => {
+          const d = child.val();
+          allOrders.push({
+            id: child.key,
+            flavor: d.flavor || '—',
+            quantity: d.quantity || 1,
+            ip: d.ip || '—',
+            country: d.country || '—',
+            browser: d.browser || '—',
+            timestamp: d.timestamp || 0
+          });
+        });
+        allOrders.reverse();
+        filteredOrders = [...allOrders];
+        ordersPage = 0;
+        updateSummary();
+        renderOrdersTable();
+        updateOrdersChart();
+      });
+
+      visitsRef.on('value', (snap) => {
+        allVisitors = [];
+        snap.forEach((child) => {
+          const d = child.val();
+          allVisitors.push({
+            id: child.key,
+            ip: d.ip || '—',
+            country: d.country || '—',
+            browser: d.browser || '—',
+            timestamp: d.timestamp || 0
+          });
+        });
+        allVisitors.reverse();
+        filteredVisitors = [...allVisitors];
+        visitorsPage = 0;
+        updateSummary();
+        renderVisitorsTable();
+        updateVisitorsChart();
+      });
+
+      flavorsRef.on('value', (snap) => {
+        allFlavors = [];
+        snap.forEach((child) => {
+          allFlavors.push({ id: child.key, ...child.val() });
+        });
+        updateSummary();
+      });
+
+      // Hide loader after a small delay
+      setTimeout(() => {
+        document.getElementById('loadingSpinner').classList.add('hidden');
+      }, 1200);
+    }
+
+    // ===== Summary =====
+    function updateSummary() {
+      document.getElementById('totalOrders').textContent = allOrders.length.toLocaleString('ar-EG');
+      document.getElementById('totalVisitors').textContent = allVisitors.length.toLocaleString('ar-EG');
+      document.getElementById('totalFlavors').textContent = allFlavors.length.toLocaleString('ar-EG');
+
+      // Top flavor
+      const flavorCount = {};
+      allOrders.forEach(o => {
+        const name = o.flavor;
+        flavorCount[name] = (flavorCount[name] || 0) + (o.quantity || 1);
+      });
+      const top = Object.entries(flavorCount).sort((a, b) => b[1] - a[1])[0];
+      document.getElementById('topFlavor').textContent = top ? top[0] : '—';
+    }
+
+    // ===== Format Helpers =====
+    function formatTime(ts) {
+      if (!ts) return '—';
+      const d = new Date(ts);
+      return d.toLocaleDateString('ar-IQ', {
+        year: 'numeric', month: '2-digit', day: '2-digit',
+        hour: '2-digit', minute: '2-digit'
+      });
+    }
+
+    function truncateBrowser(b) {
+      if (!b || b === '—') return '—';
+      if (b.length <= 20) return b;
+      return b.substring(0, 20) + '…';
+    }
+
+    // ===== Orders Table =====
+    function filterOrders() {
+      const q = document.getElementById('ordersSearch').value.trim().toLowerCase();
+      filteredOrders = allOrders.filter(o =>
+        o.flavor.toLowerCase().includes(q) ||
+        o.ip.toLowerCase().includes(q) ||
+        o.country.toLowerCase().includes(q) ||
+        o.browser.toLowerCase().includes(q)
+      );
+      ordersPage = 0;
+      renderOrdersTable();
+    }
+
+    function resetOrdersPagination() {
+      ordersPage = 0;
+      renderOrdersTable();
+    }
+
+    function renderOrdersTable() {
+      const pageSize = parseInt(document.getElementById('ordersPageSize').value);
+      const start = ordersPage * pageSize;
+      const end = start + pageSize;
+      const pageData = filteredOrders.slice(start, end);
+      const tbody = document.getElementById('ordersTableBody');
+
+      if (pageData.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="6" class="text-center text-secondary" style="padding:40px;"><i class="fas fa-inbox" style="font-size:2rem;display:block;margin-bottom:10px;color:var(--text-muted);"></i>لا توجد بيانات</td></tr>';
+      } else {
+        tbody.innerHTML = pageData.map(o => `
+          <tr>
+            <td>${escapeHtml(o.flavor)}</td>
+            <td>${o.quantity}</td>
+            <td style="font-size:0.82rem;color:var(--text-secondary);direction:ltr;text-align:right;">${escapeHtml(o.ip)}</td>
+            <td>${escapeHtml(o.country)}</td>
+            <td title="${escapeHtml(o.browser)}" style="font-size:0.82rem;">${escapeHtml(truncateBrowser(o.browser))}</td>
+            <td style="font-size:0.82rem;color:var(--text-secondary);white-space:nowrap;">${formatTime(o.timestamp)}</td>
+          </tr>
+        `).join('');
+      }
+
+      // Update pagination info
+      const total = filteredOrders.length;
+      const showing = Math.min(end, total);
+      document.getElementById('ordersPageInfo').textContent = total > 0
+        ? `${start + 1}–${showing} من ${total}`
+        : '0 من 0';
+
+      document.getElementById('ordersPrevBtn').disabled = ordersPage === 0;
+      document.getElementById('ordersNextBtn').disabled = end >= total;
+    }
+
+    function ordersPrevPage() {
+      if (ordersPage > 0) { ordersPage--; renderOrdersTable(); }
+    }
+
+    function ordersNextPage() {
+      const pageSize = parseInt(document.getElementById('ordersPageSize').value);
+      if ((ordersPage + 1) * pageSize < filteredOrders.length) { ordersPage++; renderOrdersTable(); }
+    }
+
+    // ===== Visitors Table =====
+    function filterVisitors() {
+      const q = document.getElementById('visitorsSearch').value.trim().toLowerCase();
+      filteredVisitors = allVisitors.filter(v =>
+        v.ip.toLowerCase().includes(q) ||
+        v.country.toLowerCase().includes(q) ||
+        v.browser.toLowerCase().includes(q)
+      );
+      visitorsPage = 0;
+      renderVisitorsTable();
+    }
+
+    function resetVisitorsPagination() {
+      visitorsPage = 0;
+      renderVisitorsTable();
+    }
+
+    function renderVisitorsTable() {
+      const pageSize = parseInt(document.getElementById('visitorsPageSize').value);
+      const start = visitorsPage * pageSize;
+      const end = start + pageSize;
+      const pageData = filteredVisitors.slice(start, end);
+      const tbody = document.getElementById('visitorsTableBody');
+
+      if (pageData.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="4" class="text-center text-secondary" style="padding:40px;"><i class="fas fa-inbox" style="font-size:2rem;display:block;margin-bottom:10px;color:var(--text-muted);"></i>لا توجد بيانات</td></tr>';
+      } else {
+        tbody.innerHTML = pageData.map(v => `
+          <tr>
+            <td style="font-size:0.82rem;color:var(--text-secondary);direction:ltr;text-align:right;">${escapeHtml(v.ip)}</td>
+            <td>${escapeHtml(v.country)}</td>
+            <td title="${escapeHtml(v.browser)}" style="font-size:0.82rem;">${escapeHtml(truncateBrowser(v.browser))}</td>
+            <td style="font-size:0.82rem;color:var(--text-secondary);white-space:nowrap;">${formatTime(v.timestamp)}</td>
+          </tr>
+        `).join('');
+      }
+
+      const total = filteredVisitors.length;
+      const showing = Math.min(end, total);
+      document.getElementById('visitorsPageInfo').textContent = total > 0
+        ? `${start + 1}–${showing} من ${total}`
+        : '0 من 0';
+
+      document.getElementById('visitorsPrevBtn').disabled = visitorsPage === 0;
+      document.getElementById('visitorsNextBtn').disabled = end >= total;
+    }
+
+    function visitorsPrevPage() {
+      if (visitorsPage > 0) { visitorsPage--; renderVisitorsTable(); }
+    }
+
+    function visitorsNextPage() {
+      const pageSize = parseInt(document.getElementById('visitorsPageSize').value);
+      if ((visitorsPage + 1) * pageSize < filteredVisitors.length) { visitorsPage++; renderVisitorsTable(); }
+    }
+
+    // ===== Charts =====
+    function updateOrdersChart() {
+      const flavorCount = {};
+      allOrders.forEach(o => {
+        flavorCount[o.flavor] = (flavorCount[o.flavor] || 0) + (o.quantity || 1);
+      });
+      const sorted = Object.entries(flavorCount).sort((a, b) => b[1] - a[1]).slice(0, 10);
+      const labels = sorted.map(s => s[0]);
+      const data = sorted.map(s => s[1]);
+
+      const ctx = document.getElementById('ordersChart').getContext('2d');
+      if (ordersChart) ordersChart.destroy();
+
+      ordersChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: 'عدد الطلبات',
+            data: data,
+            backgroundColor: goldColors.slice(0, data.length),
+            borderColor: goldBorders.slice(0, data.length),
+            borderWidth: 1,
+            borderRadius: 6,
+            maxBarThickness: 40
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              backgroundColor: 'rgba(18, 18, 26, 0.95)',
+              titleColor: '#f0d078',
+              bodyColor: '#f0f0f0',
+              borderColor: 'rgba(201, 168, 76, 0.3)',
+              borderWidth: 1,
+              cornerRadius: 8,
+              padding: 12,
+              titleFont: { family: 'Tajawal', size: 14, weight: '700' },
+              bodyFont: { family: 'Tajawal', size: 13 }
+            }
+          },
+          scales: {
+            x: {
+              ticks: { color: '#8a8a9a', font: { family: 'Tajawal', size: 11 }, maxRotation: 45 },
+              grid: { color: 'rgba(255,255,255,0.04)' }
+            },
+            y: {
+              ticks: { color: '#8a8a9a', font: { family: 'Tajawal', size: 11 } },
+              grid: { color: 'rgba(255,255,255,0.04)' },
+              beginAtZero: true
+            }
+          }
+        }
+      });
+    }
+
+    function updateVisitorsChart() {
+      const countryCount = {};
+      allVisitors.forEach(v => {
+        countryCount[v.country] = (countryCount[v.country] || 0) + 1;
+      });
+      const sorted = Object.entries(countryCount).sort((a, b) => b[1] - a[1]).slice(0, 8);
+      const labels = sorted.map(s => s[0]);
+      const data = sorted.map(s => s[1]);
+
+      const ctx = document.getElementById('visitorsChart').getContext('2d');
+      if (visitorsChart) visitorsChart.destroy();
+
+      visitorsChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+          labels: labels,
+          datasets: [{
+            data: data,
+            backgroundColor: goldColors.slice(0, data.length),
+            borderColor: 'rgba(10, 10, 15, 0.8)',
+            borderWidth: 2,
+            hoverOffset: 8
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: {
+                color: '#8a8a9a',
+                font: { family: 'Tajawal', size: 12 },
+                padding: 16,
+                usePointStyle: true,
+                pointStyleWidth: 10
+              }
+            },
+            tooltip: {
+              backgroundColor: 'rgba(18, 18, 26, 0.95)',
+              titleColor: '#f0d078',
+              bodyColor: '#f0f0f0',
+              borderColor: 'rgba(201, 168, 76, 0.3)',
+              borderWidth: 1,
+              cornerRadius: 8,
+              padding: 12,
+              titleFont: { family: 'Tajawal', size: 14, weight: '700' },
+              bodyFont: { family: 'Tajawal', size: 13 }
+            }
+          }
+        }
+      });
+    }
+
+    // ===== CSV Export =====
+    function exportOrdersCSV() {
+      if (filteredOrders.length === 0) { showToast('لا توجد بيانات للتصدير', 'error'); return; }
+      const headers = ['النكهة', 'الكمية', 'IP', 'البلد', 'المتصفح', 'الوقت'];
+      const rows = filteredOrders.map(o => [
+        o.flavor, o.quantity, o.ip, o.country, o.browser, formatTime(o.timestamp)
+      ]);
+      downloadCSV(headers, rows, 'orders_export.csv');
+      showToast('تم تصدير الطلبات بنجاح', 'success');
+    }
+
+    function exportVisitorsCSV() {
+      if (filteredVisitors.length === 0) { showToast('لا توجد بيانات للتصدير', 'error'); return; }
+      const headers = ['IP', 'البلد', 'المتصفح', 'الوقت'];
+      const rows = filteredVisitors.map(v => [
+        v.ip, v.country, v.browser, formatTime(v.timestamp)
+      ]);
+      downloadCSV(headers, rows, 'visitors_export.csv');
+      showToast('تم تصدير الزوار بنجاح', 'success');
+    }
+
+    function exportAllCSV() {
+      const hasOrders = allOrders.length > 0;
+      const hasVisitors = allVisitors.length > 0;
+      if (!hasOrders && !hasVisitors) { showToast('لا توجد بيانات للتصدير', 'error'); return; }
+
+      if (hasOrders) {
+        const headers = ['النكهة', 'الكمية', 'IP', 'البلد', 'المتصفح', 'الوقت'];
+        const rows = allOrders.map(o => [
+          o.flavor, o.quantity, o.ip, o.country, o.browser, formatTime(o.timestamp)
+        ]);
+        downloadCSV(headers, rows, 'all_orders_export.csv');
+      }
+      if (hasVisitors) {
+        const headers = ['IP', 'البلد', 'المتصفح', 'الوقت'];
+        const rows = allVisitors.map(v => [
+          v.ip, v.country, v.browser, formatTime(v.timestamp)
+        ]);
+        downloadCSV(headers, rows, 'all_visitors_export.csv');
+      }
+      showToast('تم تصدير جميع البيانات بنجاح', 'success');
+    }
+
+    function downloadCSV(headers, rows, filename) {
+      // BOM for UTF-8
+      let csv = '\uFEFF' + headers.join(',') + '\n';
+      rows.forEach(row => {
+        csv += row.map(cell => '"' + String(cell).replace(/"/g, '""') + '"').join(',') + '\n';
+      });
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    // ===== Controls =====
+    function refreshData() {
+      const btn = document.getElementById('refreshBtn');
+      btn.classList.add('spinning');
+      // Re-attach listeners by reloading page data
+      db.ref('orders').off();
+      db.ref('visits').off();
+      db.ref('flavors').off();
+      setTimeout(() => {
+        loadData();
+        btn.classList.remove('spinning');
+        showToast('تم تحديث البيانات', 'info');
+      }, 800);
+    }
+
+    function changeLoadLimit(val) {
+      loadLimit = parseInt(val);
+      db.ref('orders').off();
+      db.ref('visits').off();
+      db.ref('flavors').off();
+      loadData();
+      showToast(`تم تغيير الحد إلى ${loadLimit}`, 'info');
+    }
+
+    // ===== Utilities =====
+    function escapeHtml(str) {
+      if (!str) return '';
+      const div = document.createElement('div');
+      div.textContent = str;
+      return div.innerHTML;
+    }
+
+    function showToast(message, type = 'info') {
+      const container = document.querySelector('.toast-container');
+      const toast = document.createElement('div');
+      toast.className = `toast ${type}`;
+      const icons = { success: 'fa-check-circle', error: 'fa-exclamation-circle', info: 'fa-info-circle' };
+      toast.innerHTML = `<i class="fas ${icons[type] || icons.info}"></i><span>${message}</span>`;
+      container.appendChild(toast);
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateX(30px)';
+        toast.style.transition = 'all 0.3s ease';
+        setTimeout(() => toast.remove(), 300);
+      }, 3000);
+    }
+
+    // ===== Navigation & UI =====
+    // Hamburger / Side Panel
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const sidePanel = document.getElementById('sidePanel');
+    const sidePanelOverlay = document.getElementById('sidePanelOverlay');
+    const sidePanelClose = document.getElementById('sidePanelClose');
+
+    function openSidePanel() {
+      sidePanel.classList.add('active');
+      sidePanelOverlay.classList.add('active');
+      hamburgerBtn.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeSidePanel() {
+      sidePanel.classList.remove('active');
+      sidePanelOverlay.classList.remove('active');
+      hamburgerBtn.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    hamburgerBtn.addEventListener('click', () => {
+      sidePanel.classList.contains('active') ? closeSidePanel() : openSidePanel();
+    });
+    sidePanelOverlay.addEventListener('click', closeSidePanel);
+    sidePanelClose.addEventListener('click', closeSidePanel);
+
+    // Close side panel when clicking a link
+    sidePanel.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', closeSidePanel);
+    });
+
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 30);
+    });
+
+    // Scroll to top
+    const scrollTopBtn = document.getElementById('scrollTopBtn');
+    window.addEventListener('scroll', () => {
+      scrollTopBtn.classList.toggle('visible', window.scrollY > 400);
+    });
+    scrollTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // ===== Init =====
+    loadData();
+  </script>
+
+</body>
+</html>

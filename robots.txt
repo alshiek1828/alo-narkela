@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /admin-stats.html
+
+Sitemap: https://allo-narkela.netlify.app/sitemap.xml

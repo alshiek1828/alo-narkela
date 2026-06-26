@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!-- SEO Meta Tags -->
+  <title>قائمة النكهات | الو نركيلة - أفضل نكهات الاراكيل في العراق</title>
+  <meta name="description" content="تصفح قائمة نكهات الاراكيل الكاملة من الو نركيلة. نكهات فاخرة بأفضل الأسعار في العراق مع توصيل سريع.">
+  <meta name="keywords" content="نكهات اراكيل, معسل, نركيلة, hookah, shisha, العراق, الو نركيلة, flavors, قائمة النكهات">
+  <meta name="author" content="الو نركيلة">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://allo-narkila.netlify.app/menu.html">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="قائمة النكهات | الو نركيلة">
+  <meta property="og:description" content="تصفح قائمة نكهات الاراكيل الكاملة من الو نركيلة. اطلب الآن عبر واتساب!">
+  <meta property="og:url" content="https://allo-narkila.netlify.app/menu.html">
+  <meta property="og:site_name" content="الو نركيلة">
+  <meta property="og:locale" content="ar_IQ">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="قائمة النكهات | الو نركيلة">
+  <meta name="twitter:description" content="تصفح قائمة نكهات الاراكيل الكاملة من الو نركيلة. اطلب الآن عبر واتساب!">
+
+  <!-- PWA Meta Tags -->
+  <meta name="theme-color" content="#0a0a0f">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="الو نركيلة">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="generated-icon.png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* Page Header Banner */
+    .page-header {
+      padding: 140px 0 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 50% at 50% 30%, rgba(201, 168, 76, 0.1) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 40% at 20% 60%, rgba(212, 162, 78, 0.05) 0%, transparent 60%),
+        linear-gradient(180deg, #0a0a0f 0%, #0d0d16 100%);
+    }
+
+    .page-header-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .page-header h1 {
+      font-size: 3rem;
+      font-weight: 900;
+      background: var(--gold-text);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 16px;
+      animation: fadeInUp 0.8s ease forwards;
+      opacity: 0;
+    }
+
+    .page-header p {
+      font-size: 1.15rem;
+      color: var(--text-secondary);
+      max-width: 550px;
+      margin: 0 auto;
+      line-height: 1.8;
+      animation: fadeInUp 0.8s ease forwards 0.2s;
+      opacity: 0;
+    }
+
+    .page-header .title-decoration {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 20px;
+      animation: fadeInUp 0.8s ease forwards 0.3s;
+      opacity: 0;
+    }
+
+    .page-header .title-decoration .line {
+      width: 50px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold-start));
+    }
+
+    .page-header .title-decoration .line:last-child {
+      background: linear-gradient(90deg, var(--gold-start), transparent);
+    }
+
+    .page-header .title-decoration .diamond {
+      width: 8px;
+      height: 8px;
+      background: var(--gold);
+      transform: rotate(45deg);
+      flex-shrink: 0;
+    }
+
+    /* Menu Search Section - Larger */
+    .menu-search-section {
+      padding: 20px 0 40px;
+    }
+
+    .menu-search-bar {
+      max-width: 680px;
+      margin: 0 auto 24px;
+      position: relative;
+    }
+
+    .menu-search-bar i {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      font-size: 1.15rem;
+      transition: color var(--transition-fast);
+      z-index: 2;
+    }
+
+    .menu-search-bar input {
+      width: 100%;
+      padding: 18px 52px 18px 22px;
+      background: var(--bg-glass);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-full);
+      color: var(--text-primary);
+      font-size: 1.1rem;
+      transition: all var(--transition-normal);
+    }
+
+    .menu-search-bar input::placeholder {
+      color: var(--text-muted);
+    }
+
+    .menu-search-bar input:focus {
+      border-color: var(--border-gold);
+      box-shadow: 0 0 0 4px rgba(201, 168, 76, 0.1), var(--gold-glow);
+      outline: none;
+    }
+
+    .menu-search-bar input:focus + i,
+    .menu-search-bar input:focus ~ i {
+      color: var(--gold-start);
+    }
+
+    .menu-filter-buttons {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    /* Menu Flavors Grid - Larger Cards */
+    .menu-flavors-section {
+      padding: 20px 0 60px;
+    }
+
+    .menu-flavors-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    .menu-flavors-grid .flavor-card-image {
+      height: 240px;
+    }
+
+    .menu-flavors-grid .flavor-card-body .flavor-name {
+      font-size: 1.25rem;
+    }
+
+    .menu-flavors-grid .flavor-card-body .flavor-description {
+      -webkit-line-clamp: 3;
+    }
+
+    .menu-flavors-grid .flavor-price {
+      font-size: 1.4rem;
+    }
+
+    @media (max-width: 1200px) {
+      .menu-flavors-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 22px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .menu-flavors-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+
+      .page-header {
+        padding: 120px 0 40px;
+      }
+
+      .page-header h1 {
+        font-size: 2rem;
+      }
+
+      .menu-search-bar input {
+        padding: 15px 46px 15px 18px;
+        font-size: 1rem;
+      }
+    }
+
+    /* How to Order Section */
+    .how-to-order-section {
+      padding: 60px 0 80px;
+      position: relative;
+    }
+
+    .how-to-order-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border-gold), transparent);
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      margin-top: 50px;
+      position: relative;
+    }
+
+    .step-card {
+      background: var(--bg-glass);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: 36px 24px;
+      text-align: center;
+      transition: all var(--transition-normal);
+      position: relative;
+    }
+
+    .step-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--border-gold);
+      box-shadow: var(--gold-glow);
+    }
+
+    .step-number {
+      width: 56px;
+      height: 56px;
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: var(--gold);
+      color: #0a0a0f;
+      font-size: 1.4rem;
+      font-weight: 900;
+      box-shadow: var(--gold-glow);
+    }
+
+    .step-card .step-icon {
+      font-size: 2rem;
+      color: var(--gold-start);
+      margin-bottom: 16px;
+    }
+
+    .step-card h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 10px;
+    }
+
+    .step-card p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    /* Connector lines between steps */
+    .step-connector {
+      display: none;
+    }
+
+    @media (min-width: 769px) {
+      .step-connector {
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: -14px;
+        width: 28px;
+        height: 2px;
+        background: linear-gradient(90deg, var(--gold-start), transparent);
+        transform: translateY(-250%);
+      }
+
+      .steps-grid .step-card:last-child .step-connector {
+        display: none;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .steps-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+
+      .step-card {
+        padding: 28px 20px;
+        display: flex;
+        align-items: center;
+        text-align: right;
+        gap: 20px;
+      }
+
+      .step-number {
+        margin: 0;
+        flex-shrink: 0;
+        width: 48px;
+        height: 48px;
+        font-size: 1.2rem;
+      }
+
+      .step-card .step-icon {
+        display: none;
+      }
+    }
+
+    /* No Results - Centered in grid area */
+    .menu-flavors-grid .no-results {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    .menu-flavors-grid .no-results i {
+      font-size: 3rem;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .menu-flavors-grid .no-results h3 {
+      font-size: 1.3rem;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+
+    .menu-flavors-grid .no-results p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+
+    /* Results count */
+    .results-info {
+      text-align: center;
+      padding: 10px 0 30px;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .results-info span {
+      color: var(--gold-start);
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================
+       LOADING SPINNER
+       ============================ -->
+  <div class="loading-spinner" id="loadingSpinner">
+    <div class="spinner"></div>
+    <p>جاري تحميل الو نركيلة...</p>
+  </div>
+
+  <!-- ============================
+       TOAST CONTAINER
+       ============================ -->
+  <div class="toast-container"></div>
+
+  <!-- ============================
+       NAVIGATION
+       ============================ -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar-logo" onclick="handleLogoClick()" title="الو نركيلة">
+      <img src="generated-icon.png" alt="الو نركيلة">
+      <span>الو نركيلة</span>
+    </div>
+
+    <div class="navbar-links">
+      <a href="index.html">الرئيسية</a>
+      <a href="menu.html" class="active">قائمة النكهات</a>
+      <a href="about.html">من نحن</a>
+      <a href="index.html#contact">تواصل معنا</a>
+    </div>
+
+    <button class="hamburger" id="hamburgerBtn" aria-label="فتح القائمة">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- ============================
+       SIDE PANEL (Mobile)
+       ============================ -->
+  <div class="side-panel-overlay" id="sidePanelOverlay"></div>
+  <div class="side-panel" id="sidePanel">
+    <div class="side-panel-header">
+      <span class="logo-text">الو نركيلة</span>
+      <button class="side-panel-close" id="sidePanelClose" aria-label="إغلاق القائمة">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+
+    <div class="side-panel-nav">
+      <a href="index.html"><i class="fas fa-home"></i> الرئيسية</a>
+      <a href="menu.html" class="active"><i class="fas fa-fire"></i> قائمة النكهات</a>
+      <a href="about.html"><i class="fas fa-info-circle"></i> من نحن</a>
+      <a href="index.html#contact"><i class="fas fa-envelope"></i> تواصل معنا</a>
+    </div>
+
+    <div class="side-panel-social">
+      <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+    </div>
+  </div>
+
+  <!-- ============================
+       PAGE HEADER BANNER
+       ============================ -->
+  <section class="page-header">
+    <div class="page-header-content">
+      <h1>قائمة النكهات</h1>
+      <p>اكتشف تشكيلتنا المميزة من نكهات الاراكيل</p>
+      <div class="title-decoration">
+        <span class="line"></span>
+        <span class="diamond"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       SEARCH & FILTER
+       ============================ -->
+  <section class="menu-search-section">
+    <div class="container">
+      <div class="menu-search-bar">
+        <input type="text" id="searchInput" placeholder="ابحث عن نكهة...">
+        <i class="fas fa-search"></i>
+      </div>
+
+      <div class="menu-filter-buttons">
+        <button class="filter-btn active" data-filter="all" onclick="setFilter('all')">الكل</button>
+        <button class="filter-btn" data-filter="available" onclick="setFilter('available')">متوفر</button>
+        <button class="filter-btn" data-filter="unavailable" onclick="setFilter('unavailable')">غير متوفر</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       FLAVORS GRID
+       ============================ -->
+  <section class="menu-flavors-section">
+    <div class="container">
+      <div id="flavorsGrid" class="menu-flavors-grid">
+        <!-- Flavor cards rendered by app.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       HOW TO ORDER
+       ============================ -->
+  <section class="how-to-order-section">
+    <div class="container">
+      <div class="section-title animate-fade-up">
+        <h2>كيف تطلب؟</h2>
+        <p>ثلاث خطوات بسيطة للحصول على نكهتك المفضلة</p>
+        <div class="title-decoration">
+          <span class="line"></span>
+          <span class="diamond"></span>
+          <span class="line"></span>
+        </div>
+      </div>
+
+      <div class="steps-grid">
+        <div class="step-card animate-fade-up">
+          <div class="step-connector"></div>
+          <div class="step-number">١</div>
+          <div class="step-icon">
+            <i class="fas fa-hand-pointer"></i>
+          </div>
+          <div>
+            <h3>اختر النكهة</h3>
+            <p>تصفح قائمتنا الواسعة واختر النكهة التي تناسب ذوقك</p>
+          </div>
+        </div>
+
+        <div class="step-card animate-fade-up" style="transition-delay: 0.1s;">
+          <div class="step-connector"></div>
+          <div class="step-number">٢</div>
+          <div class="step-icon">
+            <i class="fas fa-mouse-pointer"></i>
+          </div>
+          <div>
+            <h3>اضغط اطلب</h3>
+            <p>اضغط على زر "اطلب" بجانب النكهة المطلوبة</p>
+          </div>
+        </div>
+
+        <div class="step-card animate-fade-up" style="transition-delay: 0.2s;">
+          <div class="step-number">٣</div>
+          <div class="step-icon">
+            <i class="fab fa-whatsapp"></i>
+          </div>
+          <div>
+            <h3>تأكيد على واتساب</h3>
+            <p>سيتم تحويلك إلى واتساب لتأكيد الطلب وموعد التوصيل</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 40px;" class="animate-fade-up" style="transition-delay: 0.3s;">
+        <a href="https://wa.me/9647702604040" target="_blank" class="btn-whatsapp" style="padding: 16px 44px; font-size: 1.05rem;">
+          <i class="fab fa-whatsapp"></i>
+          اطلب الآن عبر واتساب
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       FOOTER
+       ============================ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <img src="generated-icon.png" alt="الو نركيلة">
+            <span>الو نركيلة</span>
+          </div>
+          <p>
+            وجهتك الأولى لأفضل نكهات الاراكيل في العراق. جودة عالية وأسعار مناسبة مع توصيل سريع.
+          </p>
+          <div class="footer-social">
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-column">
+          <h4>روابط سريعة</h4>
+          <ul>
+            <li><a href="index.html"><i class="fas fa-chevron-left"></i> الرئيسية</a></li>
+            <li><a href="menu.html"><i class="fas fa-chevron-left"></i> قائمة النكهات</a></li>
+            <li><a href="about.html"><i class="fas fa-chevron-left"></i> من نحن</a></li>
+            <li><a href="index.html#contact"><i class="fas fa-chevron-left"></i> تواصل معنا</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>معلومات التواصل</h4>
+          <ul>
+            <li><a href="https://wa.me/9647702604040" target="_blank"><i class="fab fa-whatsapp"></i> 9647702604040+</a></li>
+            <li><a href="#"><i class="fas fa-map-marker-alt"></i> العراق</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>تابعنا</h4>
+          <ul>
+            <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+            <li><a href="#"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+            <li><a href="#"><i class="fab fa-tiktok"></i> TikTok</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2025 <a href="#">الو نركيلة</a>. جميع الحقوق محفوظة.</p>
+        <p>صُمم بـ <span style="color: var(--danger);">❤</span> في العراق</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================
+       SCROLL TO TOP BUTTON
+       ============================ -->
+  <button class="scroll-top" aria-label="العودة للأعلى">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <!-- ============================
+       SCRIPTS
+       ============================ -->
+  <!-- Firebase Compat SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+
+  <!-- App Script -->
+  <script src="app.js"></script>
+
+</body>
+</html>
